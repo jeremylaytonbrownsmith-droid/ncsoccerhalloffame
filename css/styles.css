@@ -911,3 +911,11 @@ body[data-page="home"] .hero-content h1 {
   .brand .crest { width: 46px; height: 46px; }
   .brand { font-size: 13px; }
 }
+
+/* =========================================================
+   Symmetry fix: logo-only brand, equal side columns
+   ========================================================= */
+.brand { min-width: 0; }
+@media (min-width: 861px) {
+  .nav-inner { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+}

@@ -50,7 +50,7 @@
 
   var header =
     '<header class="site-header"><nav class="nav-inner" aria-label="Primary">' +
-      '<a class="brand" href="' + root + 'index.html">' + crest + 'NC Soccer Hall of Fame</a>' +
+      '<a class="brand" href="' + root + 'index.html" aria-label="NC Soccer Hall of Fame — Home">' + crest + '</a>' +
       '<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>' +
       '<ul class="nav-links">' + links + '</ul>' +
       '<div class="nav-right"><a class="nav-ig" href="' + igLink + '" target="_blank" rel="noopener" aria-label="Instagram">' + igSvg + '</a></div>' +
