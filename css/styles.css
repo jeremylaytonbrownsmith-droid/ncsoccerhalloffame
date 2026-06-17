@@ -140,8 +140,8 @@ img { max-width: 100%; display: block; }
 
 .dropdown a { font-size: 12px; }
 
-/* ----------------------------- Hero ----------------------------- */
-.hero {
+/* ----------------------------- Hero (home only) ----------------------------- */
+body[data-page="home"] .hero {
   position: relative;
   height: 78vh;
   min-height: 480px;
@@ -152,8 +152,8 @@ img { max-width: 100%; display: block; }
   background: #2a2a2a;
 }
 
-.hero video,
-.hero .hero-img {
+body[data-page="home"] .hero video,
+body[data-page="home"] .hero .hero-img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -161,7 +161,7 @@ img { max-width: 100%; display: block; }
   object-fit: cover;
 }
 
-.hero::after {
+body[data-page="home"] .hero::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -918,4 +918,14 @@ body[data-page="home"] .hero-content h1 {
 .brand { min-width: 0; }
 @media (min-width: 861px) {
   .nav-inner { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+}
+
+/* =========================================================
+   Header breathing room: wider bar, tighter pills
+   ========================================================= */
+.nav-inner { max-width: 1280px; }
+.nav-links { gap: 6px; }
+.nav-links > li > a { padding: 9px 13px; font-size: 12px; }
+@media (min-width: 861px) {
+  .nav-inner { gap: 24px; }
 }

@@ -14,9 +14,8 @@
     { id: 'champions', label: 'National Champions Hall of Honor', href: root + 'pages/champions.html' },
     { id: 'about',     label: 'About the HOF',                   href: root + 'pages/about.html',
       children: [
-        { label: 'Our Mission & History', href: root + 'pages/about.html' },
-        { label: 'Board & Committee',     href: root + 'pages/about.html#board' },
-        { label: 'Contact Us',            href: root + 'pages/contact.html' },
+        { label: 'About the HOF', href: root + 'pages/about.html' },
+        { label: 'Contact Us',    href: root + 'pages/contact.html' },
       ]
     },
     { id: 'pictures',  label: 'NCSHOF Pictures', href: root + 'pages/pictures.html' },
