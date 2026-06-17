@@ -37,11 +37,8 @@
   }).join('');
 
   var crest =
-    '<svg class="crest" viewBox="0 0 40 40" aria-hidden="true">' +
-    '<circle cx="20" cy="20" r="19" fill="#D42426"/>' +
-    '<circle cx="20" cy="20" r="19" fill="none" stroke="#FFD700" stroke-width="2"/>' +
-    '<polygon fill="#fff" points="20,8 22.6,15.6 30.5,15.6 24.1,20.4 26.5,28 20,23.3 13.5,28 15.9,20.4 9.5,15.6 17.4,15.6"/>' +
-    '</svg>';
+    '<img class="crest" src="https://static.wixstatic.com/media/b61df5_91e6ffbf67a14644b612d7ea3293baaa~mv2.png" ' +
+    'alt="NC Soccer Hall of Fame logo">';
 
   var igSvg =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
@@ -56,7 +53,7 @@
       '<a class="brand" href="' + root + 'index.html">' + crest + 'NC Soccer Hall of Fame</a>' +
       '<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>' +
       '<ul class="nav-links">' + links + '</ul>' +
-      '<a class="nav-ig" href="' + igLink + '" target="_blank" rel="noopener" aria-label="Instagram">' + igSvg + '</a>' +
+      '<div class="nav-right"><a class="nav-ig" href="' + igLink + '" target="_blank" rel="noopener" aria-label="Instagram">' + igSvg + '</a></div>' +
     '</nav></header>';
 
   // ---- Footer ----
