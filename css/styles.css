@@ -959,3 +959,15 @@ body[data-page="home"] .hero-content h1 {
     transform: perspective(1100px) rotateX(0deg);
   }
 }
+
+/* =========================================================
+   Footer flanking sponsors: equal boxes so left/right mirror
+   ========================================================= */
+.footer-sponsor { width: 180px; }
+.footer-sponsor img {
+  height: auto;
+  width: auto;
+  max-height: 84px;
+  max-width: 150px;
+  object-fit: contain;
+}
