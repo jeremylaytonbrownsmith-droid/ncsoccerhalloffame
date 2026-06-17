@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Candidate | NC Soccer Hall of Fame</title>
+  <meta name="description" content="Nominate a candidate for induction into the North Carolina Soccer Hall of Fame.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .form-grid { max-width: 640px; }
+    .form-grid label {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 18px 0 6px;
+      color: #444;
+    }
+    .form-grid input,
+    .form-grid textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 15px;
+    }
+    .form-grid input:focus,
+    .form-grid textarea:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(212,36,38,0.12);
+    }
+    .submit-btn {
+      margin-top: 24px;
+      padding: 14px 40px;
+      background: var(--red);
+      color: #fff;
+      border: 0;
+      border-radius: 6px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: var(--red-deep); }
+  </style>
+</head>
+<body data-page="submit" data-root="../">
+
+  <main class="page">
+    <h1>Submit a Candidate</h1>
+    <p class="lead">Know someone who has made a lasting contribution to soccer in North Carolina? Nominate them for consideration by the Hall of Fame selection committee.</p>
+
+    <!-- This form is front-end only. To receive submissions, connect it to a
+         form service (e.g. Formspree) by setting the action attribute, or tell
+         me which provider you use and I'll wire it up. -->
+    <form class="form-grid" action="#" method="post">
+      <label for="nominee">Nominee's Full Name</label>
+      <input type="text" id="nominee" name="nominee" required>
+
+      <label for="category">Category (player, coach, administrator, contributor)</label>
+      <input type="text" id="category" name="category">
+
+      <label for="contribution">Summary of Contributions</label>
+      <textarea id="contribution" name="contribution" rows="6" required></textarea>
+
+      <label for="submitter">Your Name</label>
+      <input type="text" id="submitter" name="submitter" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <button type="submit" class="submit-btn">Submit Nomination</button>
+    </form>
+
+    <p style="margin-top:30px;color:#888;font-size:14px;">
+      <em>Note: This form needs to be connected to a submission service before it can deliver emails. Tell me what you'd like (email forwarding, a spreadsheet, etc.) and I'll set it up.</em>
+    </p>
+  </main>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>
