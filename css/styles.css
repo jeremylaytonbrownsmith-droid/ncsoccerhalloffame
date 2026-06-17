@@ -703,3 +703,15 @@ img { max-width: 100%; display: block; }
   .footer-main { grid-template-columns: 1fr; gap: 34px; }
   .footer-sponsor span { max-width: none; }
 }
+
+/* --- Home news/photo strip: clickable cards --- */
+.gallery-track a.gallery-item {
+  scroll-snap-align: start;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: #f1f1f1;
+}
+.gallery-track a.gallery-item img { height: 175px; width: 100%; object-fit: cover; border-radius: 0; }
+.gallery-track a.gallery-item:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18); }
