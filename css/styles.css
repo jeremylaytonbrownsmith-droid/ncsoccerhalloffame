@@ -893,3 +893,21 @@ body[data-page="home"] .hero { height: 100vh; min-height: 560px; }
   .nav-inner { justify-content: flex-start; }
   .brand { margin-right: auto; }
 }
+
+/* =========================================================
+   Bigger crest logo + larger hero title (home)
+   ========================================================= */
+.brand .crest { width: 58px; height: 58px; }
+.brand {
+  font-size: 16px;
+  gap: 12px;
+}
+body[data-page="home"] .hero-content h1 {
+  font-size: clamp(46px, 9.5vw, 116px);
+  letter-spacing: 5px;
+  line-height: 1.02;
+}
+@media (max-width: 600px) {
+  .brand .crest { width: 46px; height: 46px; }
+  .brand { font-size: 13px; }
+}
