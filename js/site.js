@@ -60,20 +60,45 @@
     { img: 'https://static.wixstatic.com/media/b61df5_41dca55e78d54abcaebd86d20d195f57~mv2.png', href: 'https://www.nccourage.com/' },
     { img: 'https://static.wixstatic.com/media/b61df5_e7facbbd93524db89f00e63a8eb42e8b~mv2.png', href: 'https://www.ncsca.org/' },
   ];
-  var partnerSlots = partners.map(function (p) {
-    var img = '<img src="' + p.img + '" alt="HOF supporter" loading="lazy">';
+  var igSvg =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<rect x="2" y="2" width="20" height="20" rx="5"/>' +
+    '<circle cx="12" cy="12" r="4"/>' +
+    '<circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+  var igLink = 'https://www.ncsoccerhalloffame.org/ncshof-social';
+
+  function sponsorBlock(p) {
+    var img = '<img src="' + p.img + '" alt="HOF recognition game sponsor" loading="lazy">';
+    var media = p.href
+      ? '<a href="' + p.href + '" target="_blank" rel="noopener">' + img + '</a>'
+      : img;
+    return '<div class="footer-sponsor">' + media +
+           '<span>Sponsor of the HOF Recognition Game</span></div>';
+  }
+
+  var rowLogos = partners.slice(1, 6).map(function (p) {
+    var img = '<img src="' + p.img + '" alt="HOF partner" loading="lazy">';
     return p.href
       ? '<a href="' + p.href + '" target="_blank" rel="noopener">' + img + '</a>'
       : img;
   }).join('');
+
   var footer =
     '<footer class="site-footer">' +
-      '<div class="footer-title">HOF Supporters &amp; Partners</div>' +
-      '<div class="partners">' + partnerSlots + '</div>' +
-      '<div class="footer-legal">' +
-        '&copy; ' + new Date().getFullYear() + ' North Carolina Soccer Hall of Fame. All Rights Reserved.<br>' +
-        'Promoting and supporting the game of soccer in the State of North Carolina.' +
+      '<div class="footer-main">' +
+        sponsorBlock(partners[0]) +
+        '<div class="footer-center">' +
+          '<div class="footer-title">HOF Supporters &amp; Partners</div>' +
+          '<a class="footer-ig" href="' + igLink + '" target="_blank" rel="noopener" aria-label="Instagram">' + igSvg + '</a>' +
+          '<div class="footer-legal">' +
+            '&copy; ' + new Date().getFullYear() + ' North Carolina Soccer Hall of Fame. All Rights Reserved.<br>' +
+            'Sponsor of the HOF Dinner reception.' +
+          '</div>' +
+        '</div>' +
+        sponsorBlock(partners[6]) +
       '</div>' +
+      '<div class="partners">' + rowLogos + '</div>' +
     '</footer>';
 
   // ---- Inject ----
