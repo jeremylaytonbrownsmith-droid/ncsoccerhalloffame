@@ -43,11 +43,20 @@
     '<polygon fill="#fff" points="20,8 22.6,15.6 30.5,15.6 24.1,20.4 26.5,28 20,23.3 13.5,28 15.9,20.4 9.5,15.6 17.4,15.6"/>' +
     '</svg>';
 
+  var igSvg =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<rect x="2" y="2" width="20" height="20" rx="5"/>' +
+    '<circle cx="12" cy="12" r="4"/>' +
+    '<circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+  var igLink = 'https://www.ncsoccerhalloffame.org/ncshof-social';
+
   var header =
     '<header class="site-header"><nav class="nav-inner" aria-label="Primary">' +
       '<a class="brand" href="' + root + 'index.html">' + crest + 'NC Soccer Hall of Fame</a>' +
       '<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>' +
       '<ul class="nav-links">' + links + '</ul>' +
+      '<a class="nav-ig" href="' + igLink + '" target="_blank" rel="noopener" aria-label="Instagram">' + igSvg + '</a>' +
     '</nav></header>';
 
   // ---- Footer ----
@@ -60,14 +69,6 @@
     { img: 'https://static.wixstatic.com/media/b61df5_41dca55e78d54abcaebd86d20d195f57~mv2.png', href: 'https://www.nccourage.com/' },
     { img: 'https://static.wixstatic.com/media/b61df5_e7facbbd93524db89f00e63a8eb42e8b~mv2.png', href: 'https://www.ncsca.org/' },
   ];
-  var igSvg =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
-    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-    '<rect x="2" y="2" width="20" height="20" rx="5"/>' +
-    '<circle cx="12" cy="12" r="4"/>' +
-    '<circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
-  var igLink = 'https://www.ncsoccerhalloffame.org/ncshof-social';
-
   function sponsorBlock(p) {
     var img = '<img src="' + p.img + '" alt="HOF recognition game sponsor" loading="lazy">';
     var media = p.href

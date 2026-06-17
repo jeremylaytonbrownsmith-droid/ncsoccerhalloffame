@@ -715,3 +715,71 @@ img { max-width: 100%; display: block; }
 }
 .gallery-track a.gallery-item img { height: 175px; width: 100%; object-fit: cover; border-radius: 0; }
 .gallery-track a.gallery-item:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18); }
+
+/* =========================================================
+   Header: pill nav, Instagram, transparent overlay on home
+   ========================================================= */
+
+/* Center the nav between brand (left) and Instagram (right) */
+.nav-links { flex: 1; justify-content: center; }
+
+/* Nav items as floating pill buttons */
+.nav-links > li > a {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  color: var(--ink);
+}
+.nav-links > li > a:hover,
+.nav-links > li > a.active {
+  background: var(--red);
+  color: #fff;
+}
+/* Dropdown items are not pills */
+.dropdown a {
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+  border-radius: 4px;
+}
+.dropdown a:hover { background: rgba(212, 36, 38, 0.08); color: var(--red); }
+
+/* Instagram icon button */
+.nav-ig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--red);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  flex-shrink: 0;
+  transition: color 0.2s, transform 0.2s;
+}
+.nav-ig:hover { color: var(--red-deep); transform: translateY(-2px); }
+.nav-ig svg { width: 22px; height: 22px; }
+
+/* --- Home page: header floats transparently over the hero video --- */
+body[data-page="home"] .site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+body[data-page="home"] .brand { text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
+body[data-page="home"] .site-header.scrolled {
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 2px solid var(--red);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(6px);
+}
+
+/* Mobile: keep Instagram beside the menu toggle */
+@media (max-width: 860px) {
+  .nav-ig { order: 3; }
+  .nav-links { flex: 1 0 100%; }
+}
