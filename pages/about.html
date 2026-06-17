@@ -1,35 +1,259 @@
 <!DOCTYPE html>
+<!-- v2.0 - About the HOF -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About the HOF | NC Soccer Hall of Fame</title>
-  <meta name="description" content="About the North Carolina Soccer Hall of Fame: mission, history, and the people behind it.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About the HOF | NC Soccer HOF</title>
+<meta name="description" content="About the North Carolina Soccer Hall of Fame — established in 1996. Mission, history, and Board of Directors.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--deep:#0d1f3c;--gold:#c5a55a;--gold-l:#e0cc8a;--gold-d:#a68b3c;
+  --cream:#f6f1e7;--white:#fff;--g200:#e8e4db;--g400:#b0aa9e;--g600:#6b6860;--g800:#3a3832;
+}
+html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--navy);-webkit-font-smoothing:antialiased}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--deep) 60%,#132f52 100%);padding:3.5rem 1rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(197,165,90,.12),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(197,165,90,.06);z-index:0}
+.hero-ring-1{width:600px;height:600px;top:-300px;right:-150px}
+.hero-ring-2{width:350px;height:350px;bottom:-200px;left:-80px;border-color:rgba(255,255,255,.03)}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.4rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);position:relative;z-index:1;animation:fadeUp .7s ease both}
+.hero h1 span{color:var(--gold)}
+.hero .subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.5);margin-top:.5rem;font-size:clamp(.85rem,2.5vw,1rem);animation:fadeUp .7s ease .15s both;position:relative;z-index:1}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:1rem auto 0;animation:goldLine .8s ease .3s both;transform-origin:center;position:relative;z-index:1}
+
+/* ===== CONTAINER ===== */
+.about-container{max-width:960px;margin:0 auto;padding:0 1.5rem}
+
+/* ===== COLLAPSIBLE ABOUT ===== */
+.about-section{padding:2rem 0 1.5rem}
+.about-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:var(--white);border:1px solid var(--g200);border-radius:10px;padding:1rem 1.5rem;box-shadow:0 2px 10px rgba(10,22,40,.06);transition:box-shadow .25s,border-color .25s;-webkit-tap-highlight-color:transparent}
+.about-toggle:hover{box-shadow:0 4px 16px rgba(10,22,40,.1);border-color:var(--gold)}
+.about-toggle.open{border-radius:10px 10px 0 0}
+.about-toggle-left{display:flex;align-items:center;gap:12px}
+.about-toggle-bar{width:4px;height:28px;border-radius:2px;background:linear-gradient(180deg,var(--gold),var(--gold-d));flex-shrink:0}
+.about-toggle h2{font-family:'Oswald',sans-serif;font-size:clamp(1.1rem,3vw,1.4rem);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.about-toggle h2 span{color:var(--gold-d)}
+.about-toggle-arrow{width:28px;height:28px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s}
+.about-toggle-arrow svg{width:16px;height:16px;fill:var(--gold-d);transition:transform .3s}
+.about-toggle.open .about-toggle-arrow{background:var(--gold)}
+.about-toggle.open .about-toggle-arrow svg{fill:var(--white);transform:rotate(180deg)}
+
+.about-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.about-body.open{max-height:2000px}
+.about-body-inner{padding:1.5rem;background:var(--white);border:1px solid var(--g200);border-top:none;border-radius:0 0 10px 10px}
+.about-body-inner p{font-size:.93rem;line-height:1.85;color:var(--g600);margin-bottom:1rem}
+.about-body-inner p:last-child{margin-bottom:0}
+
+/* ===== SECTION HEADINGS ===== */
+.section-heading{display:flex;align-items:center;gap:14px;margin-bottom:1.8rem}
+.section-bar{width:4px;height:36px;border-radius:2px;background:linear-gradient(180deg,var(--gold),var(--gold-d));flex-shrink:0}
+.section-heading h2{font-family:'Oswald',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.section-heading h2 span{color:var(--gold-d)}
+
+/* ===== BOARD OF DIRECTORS ===== */
+.board-section{padding:2rem 0 3rem;border-top:1px solid var(--g200);scroll-margin-top:80px}
+.board-subsection{margin-bottom:2rem}
+.board-subsection:last-child{margin-bottom:0}
+.board-label{font-family:'Oswald',sans-serif;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-d);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--g200)}
+.board-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.board-card{background:var(--white);border-radius:8px;padding:1rem 1.2rem;box-shadow:0 2px 10px rgba(10,22,40,.06);border-left:3px solid var(--gold);transition:transform .2s,box-shadow .2s}
+.board-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(10,22,40,.1)}
+.board-card-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
+.board-card-role{font-family:'Crimson Pro',serif;font-style:italic;font-size:.82rem;color:var(--g400);margin-bottom:.3rem}
+.board-card-email{font-size:.8rem}
+.board-card-email a{color:var(--gold-d);text-decoration:none;border-bottom:1px dashed rgba(166,139,60,.3);transition:color .2s,border-color .2s}
+.board-card-email a:hover{color:var(--navy);border-color:var(--navy)}
+
+/* ===== OFFICERS ===== */
+.officers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.officer-card{background:linear-gradient(135deg,var(--navy),var(--deep));border-radius:8px;padding:1rem 1.2rem;color:var(--white);box-shadow:0 4px 16px rgba(10,22,40,.15);transition:transform .2s}
+.officer-card:hover{transform:translateY(-2px)}
+.officer-card-title{font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:.3rem}
+.officer-card-name{font-family:'Oswald',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.3rem}
+.officer-card-email{font-size:.78rem}
+.officer-card-email a{color:var(--gold-l);text-decoration:none;border-bottom:1px dashed rgba(224,204,138,.3);transition:color .2s}
+.officer-card-email a:hover{color:var(--white)}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:769px){
+  .hero{padding:4rem 2rem 3rem}
+  .about-container{padding:0 2rem}
+  .about-section{padding:2.5rem 0 2rem}
+}
+@media(max-width:768px){
+  .board-grid{grid-template-columns:1fr}
+  .officers-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .hero{padding:2.5rem 1rem 2rem}
+  .about-container{padding:0 1rem}
+  .officers-grid{grid-template-columns:1fr}
+  .about-toggle{padding:.8rem 1rem}
+  .about-body-inner{padding:1rem}
+}
+</style>
 </head>
 <body data-page="about" data-root="../">
 
-  <main class="page">
-    <h1>About the HOF</h1>
-    <p class="lead">Promote and support the game of soccer in the State of North Carolina; to recognize and honor those persons who have made significant contributions to the game of soccer in the State of North Carolina.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <h1>About the <span>NC Soccer Hall of Fame</span></h1>
+  <p class="subtitle">Established in 1996 — Honoring those who shaped the beautiful game in North Carolina</p>
+  <div class="hero-line"></div>
+</div>
 
-    <h2>Our History</h2>
-    <p>The North Carolina Soccer Hall of Fame was established in 1996, with its first class of inductees honored in 1997. Each year, the Hall of Fame celebrates the players, coaches, administrators, and contributors whose dedication has grown the game across North Carolina.</p>
+<!-- COLLAPSIBLE ABOUT TEXT -->
+<div class="about-container">
+  <div class="about-section">
+    <div class="about-toggle open" id="aboutToggle">
+      <div class="about-toggle-left">
+        <div class="about-toggle-bar"></div>
+        <h2>About the <span>Organization</span></h2>
+      </div>
+      <div class="about-toggle-arrow">
+        <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+      </div>
+    </div>
+    <div class="about-body open" id="aboutBody">
+      <div class="about-body-inner">
+        <p>The North Carolina Soccer Hall of Fame was established in 1996, with the first class inducted in 1997. The N.C. Soccer HOF is a 501(c)(3) organization under the IRS Code. Partner organizations, with representation on the Board of Directors, represent youth soccer, adult soccer, referees and high school coaches.</p>
+        <p>The purposes of the organization, as stated in the bylaws, are to promote and support the game of soccer in the State of North Carolina; to recognize and honor those persons who have made significant contributions to the game of soccer in the State of North Carolina; to solicit, receive and expend funds for the accomplishment of the above purposes; and to pursue any other purposes which the Board may deem appropriate.</p>
+        <p>The North Carolina Soccer Hall of Fame is administered by a Board of Directors of 13 members from which a four-person Executive Board of Directors is elected. Included on the BOD is one ex officio representative from each of the four partners: the North Carolina Youth Soccer Association, the North Carolina Soccer Referees Association, the North Carolina Soccer Coaches Association and the North Carolina Adult Soccer Association.</p>
+        <p>From a list of suggested candidates, a formal list of nominees is compiled after September 1 of each year. The final list of nominees is selected at a meeting of the Board of Directors in late September. The final selection step is a vote by the 13 members of Board of Directors and all living members of the North Carolina Soccer Hall of Fame.</p>
+        <p>Consideration for nomination includes long-standing contributions and achievements in advancing soccer in North Carolina. Individuals to be considered may be players, coaches, referees and/or administrators. Length of service will be considered, as well as diversity of involvement.</p>
+      </div>
+    </div>
+  </div>
 
-    <h2 id="board">Board &amp; Committee</h2>
-    <p><em>Add the board members and selection committee here.</em></p>
+  <!-- BOARD OF DIRECTORS -->
+  <div class="board-section" id="board">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Board of <span>Directors</span></h2>
+    </div>
 
-    <h2>Contact</h2>
-    <p><em>Add contact details (email, mailing address) here.</em></p>
+    <!-- Officers -->
+    <div class="board-subsection">
+      <div class="board-label">Officers</div>
+      <div class="officers-grid">
+        <div class="officer-card">
+          <div class="officer-card-title">Chairman</div>
+          <div class="officer-card-name">Roger Morton</div>
+          <div class="officer-card-email"><a href="mailto:rmortonncsoccerhf@gmail.com">rmortonncsoccerhf@gmail.com</a></div>
+        </div>
+        <div class="officer-card">
+          <div class="officer-card-title">Vice Chairman</div>
+          <div class="officer-card-name">Kathy Robinson</div>
+          <div class="officer-card-email"><a href="mailto:kathy@ncsoccer.org">kathy@ncsoccer.org</a></div>
+        </div>
+        <div class="officer-card">
+          <div class="officer-card-title">Treasurer</div>
+          <div class="officer-card-name">Herk DeGraw</div>
+          <div class="officer-card-email"><a href="mailto:herk.degraw@gmail.com">herk.degraw@gmail.com</a></div>
+        </div>
+        <div class="officer-card">
+          <div class="officer-card-title">Secretary</div>
+          <div class="officer-card-name">Brian Jillings</div>
+          <div class="officer-card-email"><a href="mailto:Jillingsbr@hickoryschools.net">Jillingsbr@hickoryschools.net</a></div>
+        </div>
+      </div>
+    </div>
 
-    <p style="margin-top:30px;color:#888;font-size:14px;">
-      <em>Note: Send me the official history text, board roster, and contact info and I'll drop it in.</em>
-    </p>
-  </main>
+    <!-- Organizational Directors -->
+    <div class="board-subsection">
+      <div class="board-label">Organizational Directors</div>
+      <div class="board-grid">
+        <div class="board-card">
+          <div class="board-card-name">Abbas Piran</div>
+          <div class="board-card-role">NCSRA Representative</div>
+          <div class="board-card-email"><a href="mailto:apiran@gmail.com">apiran@gmail.com</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Jeff Thomas</div>
+          <div class="board-card-role">NCYSA Representative</div>
+          <div class="board-card-email"><a href="mailto:jhthomas68@gmail.com">jhthomas68@gmail.com</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Jay Niessner</div>
+          <div class="board-card-role">NCSCA Representative</div>
+          <div class="board-card-email"><a href="mailto:jayniessner@gmail.com">jayniessner@gmail.com</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Sam Cohen</div>
+          <div class="board-card-role">NCASA Representative</div>
+          <div class="board-card-email"><a href="mailto:sam_cohen@hotmail.com">sam_cohen@hotmail.com</a></div>
+        </div>
+      </div>
+    </div>
 
-  <script src="../js/site.js"></script>
+    <!-- Directors at Large -->
+    <div class="board-subsection">
+      <div class="board-label">Directors at Large</div>
+      <div class="board-grid">
+        <div class="board-card">
+          <div class="board-card-name">Megan Crotts</div>
+          <div class="board-card-email"><a href="mailto:crotts_megan_e@cat.com">crotts_megan_e@cat.com</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Herk DeGraw</div>
+          <div class="board-card-email"><a href="mailto:herk.degraw@gmail.com">herk.degraw@gmail.com</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Roger Morton</div>
+          <div class="board-card-email"><a href="mailto:rmortonncsoccerhf@gmail.com">rmortonncsoccerhf@gmail.com</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Brian Jillings</div>
+          <div class="board-card-email"><a href="mailto:Jillingsbr@hickoryschools.net">Jillingsbr@hickoryschools.net</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Kathy Robinson</div>
+          <div class="board-card-email"><a href="mailto:kathy@ncsoccer.org">kathy@ncsoccer.org</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Ed Young</div>
+          <div class="board-card-email"><a href="mailto:ed.young.jr@eysco.com">ed.young.jr@eysco.com</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Bob Kepner</div>
+          <div class="board-card-email"><a href="mailto:bobkepner@ncsoccer.org">bobkepner@ncsoccer.org</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Cindy Morrison</div>
+          <div class="board-card-email"><a href="mailto:rockyriverstables@yahoo.com">rockyriverstables@yahoo.com</a></div>
+        </div>
+        <div class="board-card">
+          <div class="board-card-name">Jeremy Mikell</div>
+          <div class="board-card-email"><a href="mailto:jeremy.mikell@ncsoccer.org">jeremy.mikell@ncsoccer.org</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Collapsible toggle
+var toggle = document.getElementById('aboutToggle');
+var body = document.getElementById('aboutBody');
+toggle.addEventListener('click', function() {
+  toggle.classList.toggle('open');
+  body.classList.toggle('open');
+});
+</script>
+<script src="../js/site.js"></script>
 </body>
 </html>
