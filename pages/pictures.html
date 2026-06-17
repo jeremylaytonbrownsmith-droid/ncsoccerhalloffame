@@ -20,13 +20,15 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
-/* ===== HERO ===== */
-.hero{position:relative;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 1rem 3rem;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0;background-image:url('https://static.wixstatic.com/media/b61df5_08e3c393c0284055b8b61b31159a3508~mv2.jpg/v1/fill/w_1920,h_1277,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b61df5_08e3c393c0284055b8b61b31159a3508~mv2.jpg');background-size:cover;background-position:center 30%}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.82) 0%,rgba(13,31,60,.88) 60%,rgba(10,22,40,.92) 100%)}
-.hero-grid{position:absolute;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+/* ===== HERO (matches other inner pages) ===== */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--deep) 60%,#132f52 100%);padding:3.5rem 1rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(197,165,90,.12),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(197,165,90,.06);z-index:0}
+.hero-ring-1{width:600px;height:600px;top:-300px;right:-150px}
+.hero-ring-2{width:350px;height:350px;bottom:-200px;left:-80px;border-color:rgba(255,255,255,.03)}
 .hero-content{position:relative;z-index:2}
-.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.5vw,2.6rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);animation:fadeUp .7s ease both}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.4rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);animation:fadeUp .7s ease both}
 .hero h1 span{color:var(--gold)}
 .hero .subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.5);margin-top:.5rem;font-size:clamp(.85rem,2.5vw,1rem);animation:fadeUp .7s ease .15s both}
 .hero-line{width:60px;height:2px;background:var(--gold);margin:1rem auto 0;animation:goldLine .8s ease .3s both;transform-origin:center}
@@ -63,12 +65,12 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
 
 /* ===== RESPONSIVE ===== */
 @media(min-width:769px){
-  .hero{min-height:340px;padding:5rem 2rem 3.5rem}
+  .hero{padding:4rem 2rem 3rem}
   .pics-container{padding:0 2rem}
   .gallery-section{padding:3rem 0 4rem}
 }
 @media(max-width:480px){
-  .hero{min-height:240px;padding:3rem 1rem 2.5rem}
+  .hero{padding:2.5rem 1rem 2rem}
   .pics-container{padding:0 1rem}
   .gallery-grid{grid-template-columns:1fr}
   .gallery-card-header{padding:1.5rem 1.2rem}
@@ -81,8 +83,9 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-bg" data-parallax="0.12"></div>
   <div class="hero-grid"></div>
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
   <div class="hero-content">
     <h1>NCSHOF <span>Pictures</span></h1>
     <p class="subtitle">Photo galleries from the NC Soccer Hall of Fame induction ceremonies</p>
