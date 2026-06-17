@@ -995,3 +995,6 @@ body[data-page="home"] .hero-content h1 {
 
 /* Shrink only the first (NCASA) footer sponsor logo to match the rest */
 .footer-main > .footer-sponsor:first-child img { max-height: 62px; max-width: 120px; }
+
+/* Center both footer sponsor logos in their columns (mirror each other) */
+.footer-main > .footer-sponsor { justify-self: center; }
