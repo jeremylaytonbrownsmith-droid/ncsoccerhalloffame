@@ -1,34 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>National Champions Hall of Honor | NC Soccer Hall of Fame</title>
-  <meta name="description" content="The National Champions Hall of Honor recognizes North Carolina teams that have won national championships.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>National Champions Hall of Honor | NC Soccer HOF</title>
+<meta name="description" content="The National Champions Hall of Honor recognizes North Carolina teams and programs that have won national championships.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--deep:#0d1f3c;--gold:#c5a55a;--gold-l:#e0cc8a;--gold-d:#a68b3c;
+  --cream:#f6f1e7;--white:#fff;--g200:#e8e4db;--g400:#b0aa9e;--g600:#6b6860;--g800:#3a3832;
+}
+html,body{margin:0;padding:0;width:100%;height:auto !important;min-height:0 !important;overflow-x:hidden}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--navy);-webkit-font-smoothing:antialiased;-webkit-overflow-scrolling:touch}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ===== VIEWS ===== */
+.view{display:none;height:0;overflow:hidden;visibility:hidden}
+.view.active{display:block;height:auto;overflow:visible;visibility:visible}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--deep) 60%,#132f52 100%);padding:3rem 1rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(197,165,90,.12),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(197,165,90,.06);z-index:0}
+.hero-ring-1{width:600px;height:600px;top:-300px;right:-150px}
+.hero-ring-2{width:350px;height:350px;bottom:-200px;left:-80px;border-color:rgba(255,255,255,.03)}
+.hero-logo{width:72px;height:72px;object-fit:contain;border-radius:50%;margin:0 auto 1rem;display:block;position:relative;z-index:1;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));animation:fadeUp .6s ease both}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.3rem,4vw,2.2rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);animation:fadeUp .7s ease .1s both;position:relative;z-index:1}
+.hero h1 span{color:var(--gold);display:block;font-size:1.15em}
+.hero .subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.5);margin-top:.5rem;font-size:clamp(.82rem,2.5vw,.95rem);animation:fadeUp .7s ease .2s both;max-width:550px;margin-left:auto;margin-right:auto;line-height:1.6;position:relative;z-index:1}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:1.2rem auto 0;animation:goldLine .8s ease .4s both;transform-origin:center;position:relative;z-index:1}
+
+/* ===== INTRO NOTE ===== */
+.intro-note{max-width:960px;margin:0 auto;padding:0 1rem;text-align:center}
+.intro-note p{font-family:'Crimson Pro',serif;font-style:italic;font-size:.88rem;color:var(--g400);line-height:1.6;padding:1.2rem 0 0}
+
+/* ===== CHAMPIONS LIST ===== */
+.champs-list{max-width:960px;margin:0 auto;padding:2rem 1rem 3rem}
+
+.champ-card{display:flex;gap:1.5rem;background:var(--white);border-radius:10px;overflow:hidden;box-shadow:0 3px 16px rgba(10,22,40,.08);margin-bottom:1.5rem;animation:fadeUp .5s ease both;transition:transform .3s,box-shadow .3s;position:relative;cursor:pointer}
+.champ-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--gold-d));transform:scaleY(0);transition:transform .35s;transform-origin:top}
+.champ-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,.14)}
+.champ-card:hover::after{transform:scaleY(1)}
+.champ-card:active{transform:translateY(-1px)}
+
+.champ-img{width:240px;min-width:240px;min-height:180px;background:var(--deep);position:relative;overflow:hidden}
+.champ-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.champ-card:hover .champ-img img{transform:scale(1.06)}
+.champ-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,22,40,.15),transparent);pointer-events:none}
+
+.champ-body{flex:1;padding:1.3rem 1.5rem 1.3rem .5rem;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.champ-class-tag{font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:500;text-transform:uppercase;letter-spacing:.18em;color:var(--white);background:var(--navy);display:inline-block;padding:.15rem .55rem;border-radius:3px;margin-bottom:.5rem;width:fit-content}
+.champ-name{font-family:'Oswald',sans-serif;font-size:clamp(1.1rem,3vw,1.4rem);font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:.4rem;transition:color .2s}
+.champ-card:hover .champ-name{color:var(--gold-d)}
+.champ-desc{font-size:.85rem;line-height:1.6;color:var(--g600);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.champ-arrow{font-family:'Oswald',sans-serif;font-size:.7rem;font-weight:400;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);margin-top:.6rem;display:flex;align-items:center;gap:.3rem;transition:gap .25s}
+.champ-card:hover .champ-arrow{gap:.5rem}
+.champ-arrow svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+
+/* ===== DETAIL VIEW ===== */
+.detail-content{max-width:900px;margin:0 auto;padding:2rem 1rem 3rem}
+
+.back-btn{display:inline-flex;align-items:center;gap:.4rem;font-family:'Oswald',sans-serif;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);cursor:pointer;background:none;border:none;padding:.5rem .2rem;margin-bottom:1.5rem;transition:color .2s,gap .2s;position:relative;z-index:10}
+.back-btn:hover{color:var(--gold);gap:.6rem}
+.back-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+.detail-header{display:flex;gap:2rem;margin-bottom:2rem;align-items:flex-start}
+.detail-img{width:400px;min-width:300px;border-radius:10px;overflow:hidden;box-shadow:0 6px 24px rgba(10,22,40,.12);background:var(--deep)}
+.detail-img img{width:100%;display:block}
+.detail-info{flex:1}
+.detail-tag{font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.18em;color:var(--gold-d);margin-bottom:.4rem}
+.detail-name{font-family:'Oswald',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:.8rem}
+.detail-summary{font-size:1rem;line-height:1.8;color:var(--g600)}
+
+.detail-body{margin-top:1.5rem}
+.detail-body p{font-size:.95rem;line-height:1.8;color:var(--g600);margin-bottom:1rem}
+
+.detail-divider{width:60px;height:2px;background:var(--gold);margin:2rem 0}
+
+/* Nav between champions */
+.champ-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--g200)}
+.champ-nav-btn{font-family:'Oswald',sans-serif;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-d);cursor:pointer;background:none;border:none;display:flex;align-items:center;gap:.3rem;padding:.5rem;transition:color .2s,gap .2s}
+.champ-nav-btn:hover{color:var(--gold);gap:.5rem}
+.champ-nav-btn.disabled{opacity:.3;pointer-events:none}
+.champ-nav-btn svg{width:16px;height:16px;fill:currentColor}
+
+/* ===== RESPONSIVE: TABLET+ ===== */
+@media(min-width:769px){
+  .hero{padding:3.5rem 2rem 3rem}
+  .champs-list{padding:2.5rem 2rem 4rem}
+  .champ-body{padding:1.5rem 2rem 1.5rem .8rem}
+  .champ-img{width:280px;min-width:280px;min-height:200px}
+  .intro-note{padding:0 2rem}
+  .detail-content{padding:2.5rem 2rem 4rem}
+}
+
+/* ===== RESPONSIVE: MOBILE ===== */
+@media(max-width:768px){
+  .champ-card{flex-direction:column}
+  .champ-img{width:100%;min-width:100%;height:200px;min-height:200px}
+  .champ-body{padding:1rem 1.2rem 1.2rem}
+  .champ-desc{-webkit-line-clamp:4}
+  .detail-header{flex-direction:column;gap:1.2rem}
+  .detail-img{width:100%;min-width:100%}
+  .detail-content{padding:1.5rem 1rem 2.5rem}
+}
+
+/* ===== RESPONSIVE: SMALL PHONE ===== */
+@media(max-width:420px){
+  .hero{padding:2rem .8rem 1.8rem}
+  .hero-icon{width:50px;height:50px;margin-bottom:.8rem}
+  .hero-icon svg{width:24px;height:24px}
+  .champs-list{padding:1.2rem .8rem 2rem}
+  .champ-card{margin-bottom:1.2rem}
+  .champ-img{height:170px;min-height:170px}
+  .champ-body{padding:.8rem 1rem 1rem}
+  .champ-name{font-size:1.05rem}
+  .champ-desc{font-size:.82rem;-webkit-line-clamp:3}
+  .intro-note{padding:0 .8rem}
+  .detail-content{padding:1rem .8rem 2rem}
+  .detail-name{font-size:1.4rem}
+}
+
+/* Touch support */
+@media(hover:none){
+  .champ-card:active{transform:translateY(-2px)}
+  .back-btn,.champ-nav-btn{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+}
+</style>
 </head>
 <body data-page="champions" data-root="../">
+<div id="page-top" style="height:0;overflow:hidden"></div>
 
-  <main class="page">
-    <h1>National Champions Hall of Honor</h1>
-    <p class="lead">The National Champions Hall of Honor recognizes North Carolina teams whose excellence carried them to national championships, celebrating the players and coaches behind those historic achievements.</p>
+<!-- ===== VIEW 1: LIST ===== -->
+<div id="view-list" class="view active">
+  <div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-ring hero-ring-1"></div>
+    <div class="hero-ring hero-ring-2"></div>
+    <h1>National Champions <span>Hall of Honor</span></h1>
+    <p class="subtitle">Honoring North Carolina teams and programs that have won national championships</p>
+    <div class="hero-line"></div>
+  </div>
 
-    <div class="class-block">
-      <h3>2025 Honoree</h3>
-      <ul>
-        <li>'02 CASL Academy Juniors &mdash; led by Head Coach Mark Jonas</li>
-      </ul>
+  <div class="intro-note">
+    <p>In 2012, the NCSHOF Board of Directors added the National Champions Hall of Honor category to recognize NC teams and programs that have achieved national championship success.</p>
+  </div>
+
+  <div class="champs-list" id="champsList"></div>
+</div>
+
+<!-- ===== VIEW 2: DETAIL ===== -->
+<div id="view-detail" class="view">
+  <div class="detail-content">
+    <button type="button" class="back-btn" id="backToList">
+      <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      Back to Hall of Honor
+    </button>
+
+    <div class="detail-header">
+      <div class="detail-img"><img id="detailImg" src="" alt=""></div>
+      <div class="detail-info">
+        <div class="detail-tag" id="detailTag"></div>
+        <h1 class="detail-name" id="detailName"></h1>
+        <p class="detail-summary" id="detailSummary"></p>
+      </div>
     </div>
 
-    <!-- TODO: Add prior National Champions Hall of Honor teams here. -->
-    <p style="margin-top:30px;color:#888;font-size:14px;">
-      <em>Note: Send me the full list of honored championship teams and I'll add each one.</em>
-    </p>
-  </main>
+    <div class="detail-divider"></div>
 
-  <script src="../js/site.js"></script>
+    <div class="detail-body" id="detailBody"></div>
+
+    <div class="champ-nav">
+      <button type="button" class="champ-nav-btn" id="prevChamp">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        Previous
+      </button>
+      <button type="button" class="champ-nav-btn" id="nextChamp">
+        Next
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/champions-data.js"></script>
+<script>
+let currentIndex = 0;
+
+function scrollToTop() {
+  window.scrollTo(0,0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  var top = document.getElementById('page-top');
+  if (top) top.scrollIntoView(true);
+}
+
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  scrollToTop();
+  setTimeout(scrollToTop, 50);
+  setTimeout(scrollToTop, 200);
+}
+
+// === VIEW 1: RENDER LIST ===
+const list = document.getElementById('champsList');
+champions.forEach((c, i) => {
+  const card = document.createElement('div');
+  card.className = 'champ-card';
+  card.style.animationDelay = (i * .06) + 's';
+  card.innerHTML = '<div class="champ-img"><img src="' + c.img.replace(/w_800,h_560/g,'w_500,h_350') + '" alt="' + c.name.replace(/'/g,"&#39;") + '" loading="lazy"><div class="champ-img-overlay"></div></div>' +
+    '<div class="champ-body">' +
+    '<span class="champ-class-tag">Class of ' + c.year + '</span>' +
+    '<div class="champ-name">' + c.name + '</div>' +
+    '<p class="champ-desc">' + c.desc + '</p>' +
+    '<div class="champ-arrow">Read More <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>' +
+    '</div>';
+  card.onclick = function() { showDetail(i); };
+  list.appendChild(card);
+});
+
+// === VIEW 2: SHOW DETAIL ===
+function showDetail(idx) {
+  currentIndex = idx;
+  const c = champions[idx];
+  document.getElementById('detailImg').src = c.img;
+  document.getElementById('detailImg').alt = c.name;
+  document.getElementById('detailTag').textContent = 'Hall of Honor · Class of ' + c.year;
+  document.getElementById('detailName').textContent = c.name;
+  document.getElementById('detailSummary').textContent = c.desc;
+
+  const body = document.getElementById('detailBody');
+  if (c.bio && c.bio.length) {
+    body.innerHTML = c.bio.map(p => '<p>' + p + '</p>').join('');
+  } else {
+    body.innerHTML = '<p>' + c.desc + '</p>';
+  }
+
+  // Prev / Next
+  const prevBtn = document.getElementById('prevChamp');
+  const nextBtn = document.getElementById('nextChamp');
+  if (idx <= 0) { prevBtn.classList.add('disabled'); prevBtn.onclick = null; }
+  else { prevBtn.classList.remove('disabled'); prevBtn.onclick = function() { showDetail(idx - 1); }; }
+  if (idx >= champions.length - 1) { nextBtn.classList.add('disabled'); nextBtn.onclick = null; }
+  else { nextBtn.classList.remove('disabled'); nextBtn.onclick = function() { showDetail(idx + 1); }; }
+
+  showView('view-detail');
+}
+
+// Back button
+document.getElementById('backToList').onclick = function(e) { e.preventDefault(); showView('view-list'); return false; };
+</script>
+<script src="../js/site.js"></script>
 </body>
 </html>
