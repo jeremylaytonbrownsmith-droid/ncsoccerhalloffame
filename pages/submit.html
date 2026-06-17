@@ -1,90 +1,239 @@
 <!DOCTYPE html>
+<!-- v1.0 - Submit a Candidate -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit a Candidate | NC Soccer Hall of Fame</title>
-  <meta name="description" content="Nominate a candidate for induction into the North Carolina Soccer Hall of Fame.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css">
-  <style>
-    .form-grid { max-width: 640px; }
-    .form-grid label {
-      display: block;
-      font-weight: 700;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin: 18px 0 6px;
-      color: #444;
-    }
-    .form-grid input,
-    .form-grid textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font: inherit;
-      font-size: 15px;
-    }
-    .form-grid input:focus,
-    .form-grid textarea:focus {
-      outline: none;
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(212,36,38,0.12);
-    }
-    .submit-btn {
-      margin-top: 24px;
-      padding: 14px 40px;
-      background: var(--red);
-      color: #fff;
-      border: 0;
-      border-radius: 6px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .submit-btn:hover { background: var(--red-deep); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit a Candidate | NC Soccer HOF</title>
+<meta name="description" content="Procedure for submitting NC Soccer Hall of Fame candidate statements and selecting inductees.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--deep:#0d1f3c;--gold:#c5a55a;--gold-l:#e0cc8a;--gold-d:#a68b3c;
+  --cream:#f6f1e7;--white:#fff;--g200:#e8e4db;--g400:#b0aa9e;--g600:#6b6860;--g800:#3a3832;
+}
+html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--navy);-webkit-font-smoothing:antialiased}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--deep) 60%,#132f52 100%);padding:3.5rem 1rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(197,165,90,.12),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(197,165,90,.06);z-index:0}
+.hero-ring-1{width:600px;height:600px;top:-300px;right:-150px}
+.hero-ring-2{width:350px;height:350px;bottom:-200px;left:-80px;border-color:rgba(255,255,255,.03)}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.4rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);position:relative;z-index:1;animation:fadeUp .7s ease both}
+.hero h1 span{color:var(--gold)}
+.hero .subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.5);margin-top:.5rem;font-size:clamp(.85rem,2.5vw,1rem);animation:fadeUp .7s ease .15s both;position:relative;z-index:1;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:1rem auto 0;animation:goldLine .8s ease .3s both;transform-origin:center;position:relative;z-index:1}
+
+/* ===== CONTAINER ===== */
+.submit-container{max-width:960px;margin:0 auto;padding:0 1.5rem}
+
+/* ===== DEADLINE BANNER ===== */
+.deadline-banner{background:linear-gradient(135deg,var(--navy),var(--deep));border-radius:10px;padding:1.2rem 1.5rem;margin:2rem 0 1.5rem;display:flex;align-items:center;gap:1rem;box-shadow:0 4px 16px rgba(10,22,40,.15);border-left:4px solid var(--gold)}
+.deadline-icon{width:44px;height:44px;border-radius:50%;background:rgba(197,165,90,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.deadline-icon svg{width:22px;height:22px;fill:var(--gold)}
+.deadline-text{color:var(--white)}
+.deadline-label{font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:.2rem}
+.deadline-date{font-family:'Oswald',sans-serif;font-size:1.15rem;font-weight:600}
+.deadline-note{font-family:'Crimson Pro',serif;font-size:.82rem;color:rgba(255,255,255,.5);font-style:italic;margin-top:.15rem}
+
+/* ===== DOWNLOAD CARDS ===== */
+.downloads{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+.dl-card{background:var(--white);border:1px solid var(--g200);border-radius:10px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--navy);box-shadow:0 2px 10px rgba(10,22,40,.06);transition:transform .25s,box-shadow .25s,border-color .25s}
+.dl-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(10,22,40,.1);border-color:var(--gold)}
+.dl-icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-d));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 10px rgba(197,165,90,.3)}
+.dl-icon svg{width:22px;height:22px;fill:var(--white)}
+.dl-body{flex:1;min-width:0}
+.dl-label{font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--gold-d);margin-bottom:.15rem}
+.dl-title{font-family:'Oswald',sans-serif;font-size:.95rem;font-weight:600;line-height:1.2}
+.dl-cta{font-family:'Oswald',sans-serif;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);margin-top:.3rem;display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
+.dl-card:hover .dl-cta{gap:.5rem}
+.dl-cta::after{content:'↓'}
+
+/* ===== SECTIONS ===== */
+.info-section{margin-bottom:1.5rem}
+.section-heading{display:flex;align-items:center;gap:14px;margin-bottom:1.2rem}
+.section-bar{width:4px;height:28px;border-radius:2px;background:linear-gradient(180deg,var(--gold),var(--gold-d));flex-shrink:0}
+.section-heading h2{font-family:'Oswald',sans-serif;font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.section-heading h2 span{color:var(--gold-d)}
+
+.info-card{background:var(--white);border:1px solid var(--g200);border-radius:10px;padding:1.5rem;box-shadow:0 2px 10px rgba(10,22,40,.06);margin-bottom:1.2rem}
+.info-card p{font-size:.93rem;line-height:1.85;color:var(--g600);margin-bottom:.8rem}
+.info-card p:last-child{margin-bottom:0}
+
+.info-card-label{font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--gold-d);margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--g200)}
+
+.info-list{list-style:none;padding:0}
+.info-list li{font-size:.91rem;line-height:1.75;color:var(--g600);padding:.5rem 0;padding-left:1.4rem;position:relative;border-bottom:1px solid rgba(232,228,219,.6)}
+.info-list li:last-child{border-bottom:none}
+.info-list li::before{content:'';position:absolute;left:0;top:.85rem;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:'Oswald',sans-serif;font-size:.7rem;font-weight:700;margin-right:.5rem;flex-shrink:0;vertical-align:middle}
+
+/* ===== REVISED NOTE ===== */
+.revised{text-align:center;padding:1.5rem 0 2.5rem}
+.revised p{font-family:'Crimson Pro',serif;font-style:italic;font-size:.8rem;color:var(--g400)}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:769px){
+  .hero{padding:4rem 2rem 3rem}
+  .submit-container{padding:0 2rem}
+}
+@media(max-width:768px){
+  .downloads{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero{padding:2.5rem 1rem 2rem}
+  .submit-container{padding:0 1rem}
+  .deadline-banner{flex-direction:column;text-align:center;gap:.6rem;padding:1rem}
+  .info-card{padding:1.2rem}
+  .dl-card{padding:1rem 1.2rem}
+}
+</style>
 </head>
 <body data-page="submit" data-root="../">
 
-  <main class="page">
-    <h1>Submit a Candidate</h1>
-    <p class="lead">Know someone who has made a lasting contribution to soccer in North Carolina? Nominate them for consideration by the Hall of Fame selection committee.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <h1>Submit a <span>Candidate</span></h1>
+  <p class="subtitle">Procedure for submitting NC Soccer Hall of Fame candidate statements and selecting inductees</p>
+  <div class="hero-line"></div>
+</div>
 
-    <!-- This form is front-end only. To receive submissions, connect it to a
-         form service (e.g. Formspree) by setting the action attribute, or tell
-         me which provider you use and I'll wire it up. -->
-    <form class="form-grid" action="#" method="post">
-      <label for="nominee">Nominee's Full Name</label>
-      <input type="text" id="nominee" name="nominee" required>
+<div class="submit-container">
 
-      <label for="category">Category (player, coach, administrator, contributor)</label>
-      <input type="text" id="category" name="category">
+  <!-- DEADLINE BANNER -->
+  <div class="deadline-banner">
+    <div class="deadline-icon">
+      <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+    </div>
+    <div class="deadline-text">
+      <div class="deadline-label">Submission Deadline — Class of 2026</div>
+      <div class="deadline-date">August 31, 2026</div>
+      <div class="deadline-note">All candidate statements must be received by this date</div>
+    </div>
+  </div>
 
-      <label for="contribution">Summary of Contributions</label>
-      <textarea id="contribution" name="contribution" rows="6" required></textarea>
+  <!-- DOWNLOAD FORMS -->
+  <div class="downloads">
+    <a class="dl-card" href="https://www.ncsoccerhalloffame.org/_files/ugd/b61df5_6af836b1652444b5a1f47a3d5f7ca91c.doc?dn=NCSHOF%20CANDIDATE%20TEMPLATE%20for%20photo%20and%20profile.doc" target="_blank" rel="noopener">
+      <div class="dl-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+      </div>
+      <div class="dl-body">
+        <div class="dl-label">Required Form</div>
+        <div class="dl-title">Candidate Template Form</div>
+        <div class="dl-cta">Download</div>
+      </div>
+    </a>
+    <a class="dl-card" href="https://www.ncsoccerhalloffame.org/_files/ugd/b61df5_631534fd45bc4121ac948a31ee495eb7.docx?dn=Cover%20sheet%20for%20Candidate%20Statements%20(1-12-2023)%20(2).docx" target="_blank" rel="noopener">
+      <div class="dl-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+      </div>
+      <div class="dl-body">
+        <div class="dl-label">Required Form</div>
+        <div class="dl-title">Candidate Statement Cover Sheet</div>
+        <div class="dl-cta">Download</div>
+      </div>
+    </a>
+  </div>
 
-      <label for="submitter">Your Name</label>
-      <input type="text" id="submitter" name="submitter" required>
+  <!-- PURPOSE -->
+  <div class="info-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Purpose & <span>Criteria</span></h2>
+    </div>
+    <div class="info-card">
+      <p>The primary purpose of the North Carolina Soccer Hall of Fame is to recognize and honor those persons who have made significant contributions to the game of soccer in the State of North Carolina. A potential candidate would be a person who has contributed significant time to the development of the game as a player, coach, referee or administrator. Said candidate would have spent several years in North Carolina directly involved in and promoting the game.</p>
+      <p>Candidates with primarily regional or national accomplishments can also be considered where those accomplishments draw attention to furthering the game in the State by virtue of their prior relationship to North Carolina.</p>
+    </div>
+  </div>
 
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required>
+  <!-- WHO CAN NOMINATE -->
+  <div class="info-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Who Can <span>Nominate</span></h2>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Individuals may be identified for candidacy by members of</div>
+      <ul class="info-list">
+        <li><strong>NCSHOF Partner Organizations:</strong> North Carolina Youth Soccer Association, North Carolina Adult Soccer Association, North Carolina Soccer Coaches Association and North Carolina Soccer Referees Association</li>
+        <li><strong>NC Soccer Hall of Fame,</strong> NCSHOF National Champions Hall of Honor, and NCSHOF Board of Directors</li>
+      </ul>
+    </div>
+  </div>
 
-      <button type="submit" class="submit-btn">Submit Nomination</button>
-    </form>
+  <!-- SUBMISSION PROCEDURE -->
+  <div class="info-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Submission <span>Procedure</span></h2>
+    </div>
+    <div class="info-card">
+      <ul class="info-list">
+        <li>The official NCSHOF Candidate Template Form and Candidate-Statement Cover Sheet must be used. Both forms are available for download above.</li>
+        <li>Submissions by members of Partner Organizations must be submitted to the partner organization of which the submitter is a member.</li>
+        <li>Submissions by members of the NC Soccer Hall of Fame, NCSHOF National Champions Hall of Honor or NCSHOF Board of Directors are submitted directly to the NCSHOF Board Chairman.</li>
+      </ul>
+    </div>
+  </div>
 
-    <p style="margin-top:30px;color:#888;font-size:14px;">
-      <em>Note: This form needs to be connected to a submission service before it can deliver emails. Tell me what you'd like (email forwarding, a spreadsheet, etc.) and I'll set it up.</em>
-    </p>
-  </main>
+  <!-- SELECTION PROCESS -->
+  <div class="info-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Selection <span>Process</span></h2>
+    </div>
+    <div class="info-card">
+      <p>Selection of North Carolina Soccer Hall of Fame inductees is a three-phase process:</p>
+      <ul class="info-list">
+        <li><span class="step-num">1</span> <strong>Identification of Candidates</strong> — the nomination process described above.</li>
+        <li><span class="step-num">2</span> <strong>Board Review</strong> — a confidential, private review by the NCSHOF Board of Directors of all candidate statements, concluded with a vote by secret ballot to determine which candidates to include as nominees. A candidate must receive at least 50% of the vote to be considered a nominee.</li>
+        <li><span class="step-num">3</span> <strong>Final Vote</strong> — a vote by electronic secret ballot by all living members of the NC Soccer Hall of Fame and the Board of Directors. The top three vote-getters are selected as inductees and a fourth if she or he receives more than 50% of the votes based on the total number of votes cast.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <p>On its own authority, the Board of Directors may choose to honor an individual for induction. Selection of an individual in this manner may not cause the total number of inductees in the class to exceed the maximum of four.</p>
+    </div>
+  </div>
 
-  <script src="../js/site.js"></script>
+  <!-- ELIGIBILITY -->
+  <div class="info-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2><span>Eligibility</span></h2>
+    </div>
+    <div class="info-card">
+      <ul class="info-list">
+        <li>An individual who is nominated as a candidate for the NC Soccer Hall of Fame can maintain that status for up to <strong>three consecutive years</strong>.</li>
+        <li>If not elected for induction by the third year, she or he will not be accepted as a candidate or nominee for the <strong>next two years</strong> following the three-year period.</li>
+        <li>At the end of the second year of the two-year period, the individual must be re-nominated in accordance with the nomination procedure in place at that time.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <p>It is North Carolina Soccer Hall of Fame policy that a person selected for induction will not be inducted until she or he attends the induction banquet. In the event of a posthumous induction, a member of the inductee's family must attend.</p>
+    </div>
+  </div>
+
+  <!-- REVISED NOTE -->
+  <div class="revised">
+    <p>Revised 9-1-2024</p>
+  </div>
+
+</div>
+
+<script src="../js/site.js"></script>
 </body>
 </html>

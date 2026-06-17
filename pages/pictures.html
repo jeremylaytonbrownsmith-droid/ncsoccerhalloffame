@@ -1,55 +1,165 @@
 <!DOCTYPE html>
+<!-- v1.0 - NCSHOF Pictures -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NCSHOF Pictures | NC Soccer Hall of Fame</title>
-  <meta name="description" content="Photos from North Carolina Soccer Hall of Fame induction ceremonies and events.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css">
-  <style>
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .photo-grid .placeholder {
-      aspect-ratio: 4 / 3;
-      background: #f1f1f1;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #aaa;
-      font-size: 13px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCSHOF Pictures | NC Soccer HOF</title>
+<meta name="description" content="Photo galleries from NC Soccer Hall of Fame induction ceremonies.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--deep:#0d1f3c;--gold:#c5a55a;--gold-l:#e0cc8a;--gold-d:#a68b3c;
+  --cream:#f6f1e7;--white:#fff;--g200:#e8e4db;--g400:#b0aa9e;--g600:#6b6860;--g800:#3a3832;
+}
+html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--navy);-webkit-font-smoothing:antialiased}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 1rem 3rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background-image:url('https://static.wixstatic.com/media/b61df5_08e3c393c0284055b8b61b31159a3508~mv2.jpg/v1/fill/w_1920,h_1277,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b61df5_08e3c393c0284055b8b61b31159a3508~mv2.jpg');background-size:cover;background-position:center 30%}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.82) 0%,rgba(13,31,60,.88) 60%,rgba(10,22,40,.92) 100%)}
+.hero-grid{position:absolute;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-content{position:relative;z-index:2}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.5vw,2.6rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);animation:fadeUp .7s ease both}
+.hero h1 span{color:var(--gold)}
+.hero .subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.5);margin-top:.5rem;font-size:clamp(.85rem,2.5vw,1rem);animation:fadeUp .7s ease .15s both}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:1rem auto 0;animation:goldLine .8s ease .3s both;transform-origin:center}
+
+/* ===== CONTAINER ===== */
+.pics-container{max-width:960px;margin:0 auto;padding:0 1.5rem}
+
+/* ===== GALLERY SECTION ===== */
+.gallery-section{padding:2.5rem 0 3rem}
+.section-heading{display:flex;align-items:center;gap:14px;margin-bottom:2rem}
+.section-bar{width:4px;height:36px;border-radius:2px;background:linear-gradient(180deg,var(--gold),var(--gold-d));flex-shrink:0}
+.section-heading h2{font-family:'Oswald',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.section-heading h2 span{color:var(--gold-d)}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+
+.gallery-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(10,22,40,.08);transition:transform .3s,box-shadow .3s;text-decoration:none;color:var(--navy);display:block;position:relative}
+.gallery-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--gold-d));transform:scaleY(0);transition:transform .35s;transform-origin:top}
+.gallery-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,.14)}
+.gallery-card:hover::after{transform:scaleY(1)}
+
+.gallery-card-header{background:linear-gradient(135deg,var(--navy),var(--deep));padding:1.8rem 1.5rem;position:relative;overflow:hidden}
+.gallery-card-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(197,165,90,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.05) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+.gallery-card-year{font-family:'Oswald',sans-serif;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;position:relative;z-index:1}
+.gallery-card-icon{position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(197,165,90,.12);display:flex;align-items:center;justify-content:center;z-index:1}
+.gallery-card-icon svg{width:22px;height:22px;fill:var(--gold)}
+
+.gallery-card-body{padding:1.2rem 1.5rem}
+.gallery-card-title{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.4rem}
+.gallery-card-date{font-family:'Crimson Pro',serif;font-style:italic;font-size:.88rem;color:var(--g400);margin-bottom:.8rem}
+.gallery-card-cta{font-family:'Oswald',sans-serif;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
+.gallery-card:hover .gallery-card-cta{gap:.5rem}
+.gallery-card-cta svg{width:14px;height:14px;fill:currentColor}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:769px){
+  .hero{min-height:340px;padding:5rem 2rem 3.5rem}
+  .pics-container{padding:0 2rem}
+  .gallery-section{padding:3rem 0 4rem}
+}
+@media(max-width:480px){
+  .hero{min-height:240px;padding:3rem 1rem 2.5rem}
+  .pics-container{padding:0 1rem}
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-card-header{padding:1.5rem 1.2rem}
+  .gallery-card-year{font-size:2rem}
+  .gallery-card-body{padding:1rem 1.2rem}
+}
+</style>
 </head>
 <body data-page="pictures" data-root="../">
 
-  <main class="page">
-    <h1>NCSHOF Pictures</h1>
-    <p class="lead">Moments from induction ceremonies and Hall of Fame events.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <h1>NCSHOF <span>Pictures</span></h1>
+    <p class="subtitle">Photo galleries from the NC Soccer Hall of Fame induction ceremonies</p>
+    <div class="hero-line"></div>
+  </div>
+</div>
 
-    <div class="photo-grid">
-      <div class="placeholder">Add photo</div>
-      <div class="placeholder">Add photo</div>
-      <div class="placeholder">Add photo</div>
-      <div class="placeholder">Add photo</div>
-      <div class="placeholder">Add photo</div>
-      <div class="placeholder">Add photo</div>
-      <div class="placeholder">Add photo</div>
-      <div class="placeholder">Add photo</div>
+<!-- GALLERY LINKS -->
+<div class="pics-container">
+  <div class="gallery-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Event <span>Galleries</span></h2>
     </div>
 
-    <p style="margin-top:30px;color:#888;font-size:14px;">
-      <em>Note: Drop the event photos into the <code>assets/</code> folder and I'll wire them into this gallery (with a lightbox if you'd like).</em>
-    </p>
-  </main>
+    <div class="gallery-grid">
 
-  <script src="../js/site.js"></script>
+      <a class="gallery-card" href="https://www.dropbox.com/scl/fo/slgjx447fbxxihsoayiu1/ALIszqjFBwYtEbYSFWDIqLk?rlkey=4yn8v3y34t6dfxwl3tzl8sups&st=vsvmfp1d&dl=0" target="_blank" rel="noopener">
+        <div class="gallery-card-header">
+          <div class="gallery-card-year">2026</div>
+          <div class="gallery-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-card-body">
+          <div class="gallery-card-title">NCSHOF Induction Ceremony</div>
+          <div class="gallery-card-date">March 7, 2026</div>
+          <div class="gallery-card-cta">View Gallery <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+        </div>
+      </a>
+
+      <a class="gallery-card" href="https://www.dropbox.com/scl/fo/q5v13iasyd0wor3rd5vqz/ABk7aKa4qB58RWZdh4SJgqQ?rlkey=9h9w8v3kw4ftb1rufd457ugkc&st=7our6em7&dl=0" target="_blank" rel="noopener">
+        <div class="gallery-card-header">
+          <div class="gallery-card-year">2025</div>
+          <div class="gallery-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-card-body">
+          <div class="gallery-card-title">NCSHOF Induction Ceremony</div>
+          <div class="gallery-card-date">January 29, 2025</div>
+          <div class="gallery-card-cta">View Gallery <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+        </div>
+      </a>
+
+      <a class="gallery-card" href="https://www.dropbox.com/scl/fo/mmmkjqj77xcggr44dcprf/AN4GB29Q6YSJ2QbxuaIvujs?rlkey=n5nvxzf3kabyot4srfy9ll3u0&st=9pyf7x96&dl=0" target="_blank" rel="noopener">
+        <div class="gallery-card-header">
+          <div class="gallery-card-year">2024</div>
+          <div class="gallery-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-card-body">
+          <div class="gallery-card-title">NCSHOF Induction Ceremony</div>
+          <div class="gallery-card-date">January 27, 2024</div>
+          <div class="gallery-card-cta">View Gallery <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+        </div>
+      </a>
+
+      <a class="gallery-card" href="https://www.dropbox.com/scl/fo/hezx2wef9ljqsbzsmc2vq/h?rlkey=h40sbvp78jfo8qklt96vd4zo2&dl=0" target="_blank" rel="noopener">
+        <div class="gallery-card-header">
+          <div class="gallery-card-year">2023</div>
+          <div class="gallery-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-card-body">
+          <div class="gallery-card-title">NCSHOF Induction Ceremony</div>
+          <div class="gallery-card-date">February 4, 2023</div>
+          <div class="gallery-card-cta">View Gallery <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/site.js"></script>
 </body>
 </html>
