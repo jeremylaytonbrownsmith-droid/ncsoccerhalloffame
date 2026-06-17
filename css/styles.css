@@ -971,3 +971,27 @@ body[data-page="home"] .hero-content h1 {
   max-width: 150px;
   object-fit: contain;
 }
+
+/* =========================================================
+   Bolder menu text, larger tiles, shrink NCASA footer logo
+   ========================================================= */
+
+/* Menu text: bold sans-serif on every page so it stands out */
+.nav-links > li > a {
+  font-family: 'Lato', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+.dropdown a { font-family: 'Lato', system-ui, sans-serif; font-weight: 700; }
+
+/* Home news tiles a touch larger */
+.gallery-track { grid-auto-columns: minmax(380px, 400px); }
+.gallery-track a.gallery-item img { height: 300px; }
+@media (max-width: 600px) {
+  .gallery-track { grid-auto-columns: 84vw; }
+  .gallery-track a.gallery-item img { height: 230px; }
+}
+
+/* Shrink only the first (NCASA) footer sponsor logo to match the rest */
+.footer-main > .footer-sponsor:first-child img { max-height: 62px; max-width: 120px; }
