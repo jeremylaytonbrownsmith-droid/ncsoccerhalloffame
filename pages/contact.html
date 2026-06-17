@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- v1.0 - Contact Us -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | NC Soccer HOF</title>
+<meta name="description" content="Contact the North Carolina Soccer Hall of Fame.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--deep:#0d1f3c;--gold:#c5a55a;--gold-l:#e0cc8a;--gold-d:#a68b3c;
+  --cream:#f6f1e7;--white:#fff;--g200:#e8e4db;--g400:#b0aa9e;--g600:#6b6860;
+}
+html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--navy);-webkit-font-smoothing:antialiased}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--deep) 60%,#132f52 100%);padding:3.5rem 1rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(197,165,90,.12),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(197,165,90,.06);z-index:0}
+.hero-ring-1{width:600px;height:600px;top:-300px;right:-150px}
+.hero-ring-2{width:350px;height:350px;bottom:-200px;left:-80px;border-color:rgba(255,255,255,.03)}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.4rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);position:relative;z-index:1;animation:fadeUp .7s ease both}
+.hero h1 span{color:var(--gold)}
+.hero .subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.5);margin-top:.5rem;font-size:clamp(.85rem,2.5vw,1rem);animation:fadeUp .7s ease .15s both;position:relative;z-index:1}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:1rem auto 0;animation:goldLine .8s ease .3s both;transform-origin:center;position:relative;z-index:1}
+
+/* ===== CONTAINER ===== */
+.contact-container{max-width:640px;margin:0 auto;padding:0 1.5rem}
+
+/* ===== FORM SECTION ===== */
+.form-section{padding:2.5rem 0 3rem}
+
+.form-card{background:var(--white);border-radius:12px;padding:2rem 2rem;box-shadow:0 4px 20px rgba(10,22,40,.08);border:1px solid var(--g200)}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+
+.form-group{margin-bottom:1rem}
+.form-group:last-of-type{margin-bottom:1.5rem}
+.form-label{display:block;font-family:'Oswald',sans-serif;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-d);margin-bottom:.4rem}
+.form-input,.form-textarea{width:100%;font-family:'Crimson Pro',Georgia,serif;font-size:.95rem;color:var(--navy);background:var(--cream);border:1px solid var(--g200);border-radius:8px;padding:.7rem 1rem;transition:border-color .25s,box-shadow .25s;outline:none}
+.form-input:focus,.form-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--g400);font-style:italic}
+.form-textarea{resize:vertical;min-height:140px}
+
+.form-submit{display:block;width:100%;font-family:'Oswald',sans-serif;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--navy);background:linear-gradient(135deg,var(--gold),var(--gold-d));border:none;border-radius:8px;padding:.85rem 1rem;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 3px 12px rgba(197,165,90,.3)}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(197,165,90,.4)}
+.form-submit:active{transform:translateY(0)}
+
+/* Success message */
+.form-success{display:none;text-align:center;padding:2rem 1rem}
+.form-success-icon{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-d));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center}
+.form-success-icon svg{width:30px;height:30px;fill:var(--white)}
+.form-success h3{font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.4rem}
+.form-success p{font-family:'Crimson Pro',serif;font-style:italic;color:var(--g600);font-size:.9rem}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:769px){
+  .hero{padding:4rem 2rem 3rem}
+  .contact-container{padding:0 2rem}
+  .form-card{padding:2.5rem}
+}
+@media(max-width:480px){
+  .hero{padding:2.5rem 1rem 2rem}
+  .contact-container{padding:0 1rem}
+  .form-row{grid-template-columns:1fr}
+  .form-card{padding:1.5rem}
+}
+</style>
+</head>
+<body data-page="contact" data-root="../">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <h1>Contact <span>Us</span></h1>
+  <p class="subtitle">We'd love to hear from you</p>
+  <div class="hero-line"></div>
+</div>
+
+<div class="contact-container">
+  <div class="form-section">
+    <div class="form-card">
+      <!-- FORM -->
+      <div id="formFields">
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label" for="fname">First Name</label>
+            <input class="form-input" type="text" id="fname" placeholder="First Name" required>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label" for="lname">Last Name</label>
+            <input class="form-input" type="text" id="lname" placeholder="Last Name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-textarea" id="message" placeholder="How can we help you?"></textarea>
+        </div>
+        <button class="form-submit" id="sendBtn">Send Message</button>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <h3>Thanks for reaching out!</h3>
+        <p>Your message has been sent. We'll get back to you soon.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('sendBtn').addEventListener('click', function() {
+  var fname = document.getElementById('fname').value.trim();
+  var lname = document.getElementById('lname').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var msg = document.getElementById('message').value.trim();
+
+  if (!fname || !lname || !email) {
+    alert('Please fill in your name and email.');
+    return;
+  }
+
+  var subject = encodeURIComponent('NCSHOF Contact: ' + fname + ' ' + lname);
+  var body = encodeURIComponent(
+    'Name: ' + fname + ' ' + lname + '\n' +
+    'Email: ' + email + '\n\n' +
+    'Message:\n' + msg
+  );
+
+  window.open('mailto:Centerpointwebdesignbyjr@gmail.com?subject=' + subject + '&body=' + body, '_blank');
+
+  // Show success
+  document.getElementById('formFields').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+</script>
+<script src="../js/site.js"></script>
+</body>
+</html>
