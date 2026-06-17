@@ -151,4 +151,51 @@
 
     targets.forEach(function (el) { io.observe(el); });
   }
+
+  // ---- Count-up stats ------------------------------------------------
+  var counters = [].slice.call(document.querySelectorAll('[data-count]'));
+  function animateCount(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var dur = 1400, start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toString();
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target.toString();
+    }
+    requestAnimationFrame(step);
+  }
+  if (counters.length) {
+    if (reduce || !('IntersectionObserver' in window)) {
+      counters.forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
+    } else {
+      var cio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { animateCount(e.target); cio.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      counters.forEach(function (el) { cio.observe(el); });
+    }
+  }
+
+  // ---- Subtle hero parallax -----------------------------------------
+  var para = [].slice.call(document.querySelectorAll('[data-parallax]'));
+  if (para.length && !reduce) {
+    var ticking = false;
+    var applyParallax = function () {
+      para.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        var speed = parseFloat(el.getAttribute('data-parallax')) || 0.12;
+        var offset = (r.top + r.height / 2 - window.innerHeight / 2) * -speed;
+        el.style.transform = 'scale(1.15) translateY(' + offset.toFixed(1) + 'px)';
+      });
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(applyParallax); ticking = true; }
+    }, { passive: true });
+    applyParallax();
+  }
 })();

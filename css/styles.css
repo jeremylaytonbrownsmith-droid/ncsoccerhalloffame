@@ -623,3 +623,45 @@ img { max-width: 100%; display: block; }
 .to-top:hover { background: var(--red-deep); transform: translateY(-2px); }
 .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 @media (max-width: 600px) { .to-top { right: 14px; bottom: 14px; } }
+
+/* --- Stats band (home) --- */
+.stats { background: #fff; padding: 56px 24px; }
+.stats-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.stat { position: relative; }
+.stat:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -12px; top: 50%;
+  transform: translateY(-50%);
+  height: 48px; width: 1px;
+  background: #eceae4;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: clamp(34px, 6vw, 56px);
+  line-height: 1;
+  color: var(--red);
+}
+.stat-label {
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6b6860;
+  font-weight: 700;
+}
+@media (max-width: 680px) {
+  .stats-inner { grid-template-columns: 1fr 1fr; gap: 34px 16px; }
+  .stat::after { display: none; }
+}
+
+/* --- Hero parallax safeguard --- */
+[data-parallax] { will-change: transform; }
