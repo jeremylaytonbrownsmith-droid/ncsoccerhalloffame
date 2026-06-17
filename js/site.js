@@ -224,4 +224,58 @@
     }, { passive: true });
     applyParallax();
   }
+
+  // ---- Carousel: arrows + drag-to-scroll for .gallery rows ----------
+  document.querySelectorAll('.gallery').forEach(function (g) {
+    var track = g.querySelector('.gallery-track');
+    if (!track) return;
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'gallery-arrow prev';
+    prev.setAttribute('aria-label', 'Scroll left');
+    prev.innerHTML = '&#8249;';
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'gallery-arrow next';
+    next.setAttribute('aria-label', 'Scroll right');
+    next.innerHTML = '&#8250;';
+    g.appendChild(prev);
+    g.appendChild(next);
+
+    function amount() { return Math.max(track.clientWidth * 0.8, 320); }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -amount(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: amount(), behavior: 'smooth' }); });
+
+    function updateArrows() {
+      var maxScroll = track.scrollWidth - track.clientWidth - 2;
+      prev.classList.toggle('hidden', track.scrollLeft <= 2);
+      next.classList.toggle('hidden', track.scrollLeft >= maxScroll);
+    }
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    updateArrows();
+
+    // Drag / swipe to scroll
+    var down = false, startX = 0, startLeft = 0, moved = false;
+    track.addEventListener('pointerdown', function (e) {
+      down = true; moved = false;
+      startX = e.clientX; startLeft = track.scrollLeft;
+      track.classList.add('dragging');
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      track.scrollLeft = startLeft - dx;
+    });
+    window.addEventListener('pointerup', function () {
+      down = false;
+      track.classList.remove('dragging');
+    });
+    // Don't trigger a link click at the end of a drag
+    track.addEventListener('click', function (e) {
+      if (moved) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
+  });
 })();
