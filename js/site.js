@@ -50,10 +50,21 @@
     '</nav></header>';
 
   // ---- Footer ----
-  var partnerSlots = '';
-  for (var i = 0; i < 6; i++) {
-    partnerSlots += '<div class="placeholder">logo</div>';
-  }
+  var partners = [
+    { img: 'https://static.wixstatic.com/media/b61df5_fdb07a459a29429a9f559803307b8ff6~mv2.png', href: '' },
+    { img: 'https://static.wixstatic.com/media/b61df5_a761ec36c86346d88ff9290cdad08bcf~mv2.png', href: 'https://www.northcarolinafc.com/' },
+    { img: 'https://static.wixstatic.com/media/b61df5_74ed4cb049d74de28faf66a911b9c020~mv2.png', href: 'https://www.ncsoccer.org/' },
+    { img: 'https://static.wixstatic.com/media/b61df5_60c4d8bcd8cc464e8518925313dc5317~mv2.jpg', href: 'https://www.soccer.com/' },
+    { img: 'https://static.wixstatic.com/media/b61df5_9afd43b2ca2c48b6ad37c0fc40031d3f~mv2.png', href: 'https://www.ncsra.org/' },
+    { img: 'https://static.wixstatic.com/media/b61df5_41dca55e78d54abcaebd86d20d195f57~mv2.png', href: 'https://www.nccourage.com/' },
+    { img: 'https://static.wixstatic.com/media/b61df5_e7facbbd93524db89f00e63a8eb42e8b~mv2.png', href: 'https://www.ncsca.org/' },
+  ];
+  var partnerSlots = partners.map(function (p) {
+    var img = '<img src="' + p.img + '" alt="HOF supporter" loading="lazy">';
+    return p.href
+      ? '<a href="' + p.href + '" target="_blank" rel="noopener">' + img + '</a>'
+      : img;
+  }).join('');
   var footer =
     '<footer class="site-footer">' +
       '<div class="footer-title">HOF Supporters &amp; Partners</div>' +

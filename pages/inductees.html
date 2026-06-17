@@ -1,71 +1,399 @@
 <!DOCTYPE html>
+<!-- v2.6 - removed Mike Schaeffer (moved to 2026 class), updated Hesmer photo -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inductees | NC Soccer Hall of Fame</title>
-  <meta name="description" content="Inductees of the North Carolina Soccer Hall of Fame, organized by induction class.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inductees | NC Soccer HOF</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--navy:#0a1628;--deep:#0d1f3c;--gold:#c5a55a;--gold-l:#e0cc8a;--gold-d:#a68b3c;
+--cream:#f6f1e7;--white:#fff;--g200:#e8e4db;--g400:#b0aa9e;--g600:#6b6860;--g800:#3a3832;
+}
+html,body{margin:0;padding:0;width:100%;height:auto !important;min-height:0 !important;overflow-x:hidden}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--navy);-webkit-font-smoothing:antialiased;-webkit-overflow-scrolling:touch}
+
+/* ===== UTILITIES ===== */
+.container{max-width:1100px;margin:0 auto;padding:0 1rem}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+.anim-fadeUp{animation:fadeUp .6s ease both}
+.anim-fadeIn{animation:fadeIn .5s ease both}
+
+/* Stagger children */
+.stagger > *:nth-child(1){animation-delay:.05s}
+.stagger > *:nth-child(2){animation-delay:.1s}
+.stagger > *:nth-child(3){animation-delay:.15s}
+.stagger > *:nth-child(4){animation-delay:.2s}
+.stagger > *:nth-child(5){animation-delay:.25s}
+.stagger > *:nth-child(6){animation-delay:.3s}
+.stagger > *:nth-child(7){animation-delay:.35s}
+.stagger > *:nth-child(8){animation-delay:.4s}
+.stagger > *:nth-child(9){animation-delay:.45s}
+.stagger > *:nth-child(10){animation-delay:.5s}
+
+/* ===== FLOATING HOME BUTTON ===== */
+.float-home{position:fixed;bottom:1.2rem;right:1.2rem;z-index:999;display:none;align-items:center;gap:.5rem;font-family:'Oswald',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--white);background:linear-gradient(135deg,var(--navy),var(--deep));border:2px solid var(--gold);border-radius:50px;padding:.6rem 1.2rem .6rem .9rem;cursor:pointer;box-shadow:0 4px 20px rgba(10,22,40,.3);transition:transform .25s,box-shadow .25s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.float-home:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(10,22,40,.4)}
+.float-home svg{width:16px;height:16px;fill:var(--gold);flex-shrink:0}
+.float-home.visible{display:inline-flex}
+
+/* ===== BACK BTN ===== */
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:400;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);text-decoration:none;padding:1rem .5rem .8rem;cursor:pointer;border:none;background:none;transition:color .25s,gap .25s;position:relative;z-index:10;-webkit-tap-highlight-color:rgba(197,165,90,.2);touch-action:manipulation}
+.back-btn:hover,.back-btn:active{color:var(--navy);gap:.7rem}
+.back-btn svg{width:20px;height:20px;fill:currentColor;transition:transform .25s;flex-shrink:0}
+.back-btn:hover svg{transform:translateX(-3px)}
+
+/* ===== VIEW 1: CLASS GRID ===== */
+.hero-banner{background:linear-gradient(160deg,var(--navy) 0%,var(--deep) 60%,#132f52 100%);padding:2.5rem 1rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(197,165,90,.1),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(197,165,90,.06);z-index:0}
+.hero-ring-1{width:600px;height:600px;top:-300px;right:-150px}
+.hero-ring-2{width:350px;height:350px;bottom:-200px;left:-80px;border-color:rgba(255,255,255,.03)}
+.hero-logo{width:68px;height:68px;object-fit:contain;border-radius:50%;margin:0 auto .8rem;display:block;position:relative;z-index:1;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));animation:fadeUp .5s ease both}
+.hero-banner h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.3rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);position:relative;z-index:1;animation:fadeUp .7s ease both}
+.hero-banner h1 span{color:var(--gold)}
+.hero-banner .subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.5);margin-top:.5rem;font-size:clamp(.85rem,2.5vw,1rem);animation:fadeUp .7s ease .15s both;position:relative;z-index:1}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:1rem auto 0;animation:goldLine .8s ease .3s both;transform-origin:center;position:relative;z-index:1}
+
+.search-section{max-width:1100px;margin:0 auto;padding:1.2rem 1rem .5rem;animation:fadeUp .6s ease .2s both}
+.search-wrap{position:relative;max-width:400px;margin:0 auto}
+.search-wrap input{width:100%;font-family:'Crimson Pro',serif;font-size:16px;padding:.7rem 1rem .7rem 2.6rem;border:2px solid var(--g200);border-radius:50px;outline:none;background:var(--white);color:var(--navy);transition:border-color .3s,box-shadow .3s;-webkit-appearance:none}
+.search-wrap input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(197,165,90,.15)}
+.search-wrap input::placeholder{color:var(--g400)}
+.search-wrap svg{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:var(--g400);pointer-events:none}
+
+.classes-grid{max-width:1100px;margin:0 auto;padding:1.2rem 1rem 2.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+.class-card{background:var(--white);border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(10,22,40,.08);transition:transform .35s cubic-bezier(.25,.46,.45,.94),box-shadow .35s;cursor:pointer;text-decoration:none;color:var(--navy);display:block;position:relative;animation:fadeUp .5s ease both;-webkit-tap-highlight-color:transparent}
+.class-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-l));transform:scaleX(0);transition:transform .35s;transform-origin:left}
+.class-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(10,22,40,.13)}
+.class-card:hover::before{transform:scaleX(1)}
+.class-card:active{transform:translateY(-1px);box-shadow:0 4px 12px rgba(10,22,40,.1)}
+.class-card-img{width:100%;height:160px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8f4ec,#ede7d9);position:relative;overflow:hidden}
+.class-card-img::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(197,165,90,.06),transparent 70%);pointer-events:none}
+.class-card-img img{width:100px;height:100px;object-fit:contain;transition:transform .4s}
+.class-card:hover .class-card-img img{transform:scale(1.08);filter:brightness(1.1) drop-shadow(0 0 8px rgba(197,165,90,.4))}
+.class-card-body{padding:.8rem 1rem 1rem;text-align:center}
+.class-card-year{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.25rem}
+.class-card-names{font-size:.8rem;line-height:1.5;color:var(--g600)}
+.class-card-count{display:inline-block;font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:500;text-transform:uppercase;letter-spacing:.12em;background:var(--navy);color:var(--gold);padding:.15rem .5rem;border-radius:10px;margin-top:.4rem}
+
+/* ===== VIEW 2: CLASS DETAIL ===== */
+.class-hero{background:linear-gradient(160deg,var(--navy),var(--deep));padding:3.5rem 1rem 2rem;text-align:center;position:relative;overflow:hidden}
+.class-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 500px 250px at 50% 100%,rgba(197,165,90,.12),transparent);pointer-events:none}
+.class-hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.8rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);animation:fadeUp .6s ease both}
+.class-hero h1 .year-highlight{display:block;font-size:1.5em;color:var(--gold);line-height:1}
+.class-hero .class-sub{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.45);margin-top:.4rem;animation:fadeUp .6s ease .1s both}
+.class-hero-line{width:50px;height:2px;background:var(--gold);margin:.8rem auto 0;animation:goldLine .7s ease .2s both;transform-origin:center}
+
+.inductee-card{display:flex;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--g200);animation:fadeUp .5s ease both;transition:background .2s;position:relative}
+.inductee-card:last-child{border-bottom:none}
+.inductee-card:hover{background:rgba(197,165,90,.03)}
+.inductee-photo-wrap{width:150px;min-width:150px;position:relative}
+.inductee-photo{width:150px;height:190px;border-radius:6px;overflow:hidden;background:var(--deep);box-shadow:0 4px 16px rgba(10,22,40,.15);position:relative}
+.inductee-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .5s}
+.inductee-card:hover .inductee-photo img{transform:scale(1.03)}
+.inductee-photo::after{content:'';position:absolute;inset:0;border:1px solid rgba(197,165,90,.15);border-radius:6px;pointer-events:none}
+.inductee-info{flex:1;padding-top:.2rem;min-width:0}
+.inductee-info h2{font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:.15rem;transition:color .2s}
+.inductee-card:hover .inductee-info h2{color:var(--gold-d)}
+.inductee-info .inductee-year-tag{font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:400;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-d);margin-bottom:.5rem}
+.inductee-info p{font-size:.88rem;line-height:1.65;color:var(--g600);margin-bottom:.8rem;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.read-more-btn{font-family:'Oswald',sans-serif;font-size:.8rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--white);background:var(--navy);border:none;padding:.55rem 1.4rem;border-radius:4px;cursor:pointer;transition:background .25s,transform .25s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.read-more-btn:hover,.read-more-btn:active{background:var(--gold-d);transform:translateX(3px)}
+
+/* ===== VIEW 3: INDIVIDUAL BIO ===== */
+.bio-hero{background:linear-gradient(160deg,var(--navy),var(--deep));padding:3.5rem 1rem 0;position:relative;overflow:hidden}
+.bio-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 400px 200px at 70% 100%,rgba(197,165,90,.1),transparent);pointer-events:none}
+.bio-hero-inner{max-width:1100px;margin:0 auto;display:flex;gap:1.5rem;align-items:flex-end;padding-bottom:0;position:relative}
+.bio-hero-photo{width:220px;min-width:220px;border-radius:8px 8px 0 0;overflow:hidden;box-shadow:0 -4px 20px rgba(0,0,0,.3);position:relative;z-index:2;margin-bottom:-3rem}
+.bio-hero-photo img{width:100%;display:block}
+.bio-hero-text{padding-bottom:1.5rem;animation:fadeUp .5s ease both;min-width:0}
+.bio-hero-text .bio-class-tag{font-family:'Oswald',sans-serif;font-size:.7rem;font-weight:400;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:.3rem}
+.bio-hero-text h1{font-family:'Oswald',sans-serif;font-size:clamp(1.4rem,4vw,2.4rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:.4rem}
+.bio-hero-text .short-desc{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.55);font-size:.9rem;line-height:1.5;max-width:500px}
+
+.bio-body{max-width:1100px;margin:0 auto;padding:3.5rem 1rem 1rem}
+.bio-body-text{max-width:750px}
+.bio-body-text p{font-size:.95rem;line-height:1.8;color:var(--g600);margin-bottom:1rem}
+
+
+.bio-nav{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;padding:1.2rem 1rem 2.5rem;border-top:1px solid var(--g200);gap:1rem}
+.bio-nav-btn{font-family:'Oswald',sans-serif;font-size:.8rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--navy);cursor:pointer;border:1px solid var(--g200);background:var(--white);padding:.6rem 1.2rem;border-radius:4px;transition:all .25s;display:flex;align-items:center;gap:.4rem;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.bio-nav-btn:hover,.bio-nav-btn:active{border-color:var(--gold);color:var(--gold-d);box-shadow:0 2px 8px rgba(197,165,90,.15)}
+.bio-nav-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+.bio-nav-btn.disabled{opacity:.25;cursor:default;pointer-events:none}
+
+/* VIEWS */
+.view{display:none;height:0;overflow:hidden;visibility:hidden}
+.view.active{display:block;height:auto;overflow:visible;visibility:visible}
+
+/* ===== RESPONSIVE: TABLET ===== */
+@media(min-width:769px){
+.container{padding:0 2rem}
+.hero-banner{padding:3rem 2rem 2.5rem}
+.search-section{padding:1.5rem 2rem .5rem}
+.classes-grid{padding:1.5rem 2rem 3rem}
+.class-hero{padding:2rem 2rem 2.5rem}
+.bio-hero{padding:2rem 2rem 0}
+.bio-body{padding:4rem 2rem 1rem}
+.bio-nav{padding:1.5rem 2rem 3rem}
+.inductee-card{gap:2rem;padding:2rem 0}
+.inductee-photo-wrap{width:170px;min-width:170px}
+.inductee-photo{width:170px;height:210px}
+.bio-hero-photo{width:240px;min-width:240px}
+.bio-hero-inner{gap:2rem}
+.inductee-info h2{font-size:1.35rem}
+.class-card-img{height:180px}
+.class-card-img img{width:120px;height:120px}
+}
+
+/* ===== RESPONSIVE: MOBILE ===== */
+@media(max-width:768px){
+.classes-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+.class-card-img{height:130px}
+.class-card-img img{width:80px;height:80px}
+.class-card-body{padding:.7rem .8rem .8rem}
+.class-card-year{font-size:.9rem}
+.class-card-names{font-size:.75rem}
+
+.inductee-card{flex-direction:column;align-items:center;text-align:center;gap:.8rem;padding:1.2rem 0}
+.inductee-photo-wrap{width:130px;min-width:130px}
+.inductee-photo{width:130px;height:165px}
+.inductee-info p{-webkit-line-clamp:3}
+
+.bio-hero{padding:1.2rem 1rem 0}
+.bio-hero-inner{flex-direction:column;align-items:center;text-align:center}
+.bio-hero-photo{width:140px;min-width:140px;margin-bottom:-2rem}
+.bio-hero-text{padding-bottom:1.2rem}
+.bio-hero-text .short-desc{max-width:100%;font-size:.85rem}
+.bio-body{padding:2.8rem 1rem .8rem}
+.bio-body-text p{font-size:.9rem;line-height:1.75}
+
+.bio-nav{padding:1rem 1rem 2rem}
+.bio-nav-btn{padding:.5rem .8rem;font-size:.75rem}
+
+.back-btn{font-size:.8rem;padding:1rem .3rem .6rem}
+}
+
+/* ===== RESPONSIVE: SMALL PHONE ===== */
+@media(max-width:420px){
+.classes-grid{grid-template-columns:repeat(2,1fr);gap:.8rem;padding:1rem .8rem 2rem}
+.class-card-img{height:110px}
+.class-card-img img{width:65px;height:65px}
+.class-card-body{padding:.5rem .6rem .7rem}
+.class-card-year{font-size:.85rem}
+.class-card-names{font-size:.7rem;-webkit-line-clamp:3;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+
+.hero-banner{padding:2rem .8rem 1.5rem}
+.hero-banner h1{font-size:1.2rem}
+.search-section{padding:1rem .8rem .4rem}
+.search-wrap input{font-size:16px;padding:.6rem .8rem .6rem 2.2rem}
+
+.class-hero{padding:1.2rem .8rem 1.5rem}
+.inductee-photo-wrap{width:120px;min-width:120px}
+.inductee-photo{width:120px;height:150px}
+.inductee-info h2{font-size:1.1rem}
+
+.bio-hero-photo{width:120px;min-width:120px}
+.bio-hero-text h1{font-size:1.3rem}
+.bio-body{padding:2.2rem .8rem .6rem}
+.bio-nav{padding:.8rem .8rem 1.5rem}
+.container{padding:0 .8rem}
+}
+</style>
 </head>
 <body data-page="inductees" data-root="../">
+<div id="page-top" style="height:0;overflow:hidden"></div>
 
-  <main class="page">
-    <h1>Inductees</h1>
-    <p class="lead">Since the first class was inducted in 1997, the North Carolina Soccer Hall of Fame has honored the players, coaches, administrators, and contributors who have shaped the game across the state.</p>
+<!-- FLOATING HOME BUTTON (visible on Views 2 & 3) -->
+<button type="button" class="float-home" id="floatHome">
+<svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+All Classes
+</button>
 
-    <div class="class-block">
-      <h3>Class of 2025</h3>
-      <ul>
-        <li>Jane Llewellyn</li>
-        <li>Kip Ward (deceased) &amp; Vicky (Ward) Brawley</li>
-        <li>Rich Winslow</li>
-        <li>David Miller</li>
-      </ul>
-    </div>
+<!-- VIEW 1: Class Grid -->
+<div id="view-classes" class="view active">
+<div class="hero-banner">
+<div class="hero-grid"></div>
+<div class="hero-ring hero-ring-1"></div>
+<div class="hero-ring hero-ring-2"></div>
+<h1>Inductees of the <span>NC Soccer Hall of Fame</span></h1>
+<p class="subtitle">Celebrating the legends who shaped the beautiful game in North Carolina</p>
+<div class="hero-line"></div>
+</div>
+<div class="search-section">
+<div class="search-wrap">
+<svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+<input type="text" id="searchInput" placeholder="Search inductees by name…">
+</div>
+</div>
+<div class="classes-grid stagger" id="classesGrid"></div>
+</div>
 
-    <!-- TODO: Add the full roster for each class below.
-         Duplicate a .class-block for each year. -->
-    <div class="class-block">
-      <h3>Class of 2008</h3>
-      <ul>
-        <li>Mia Hamm</li>
-        <li><em>Add remaining 2008 inductees&hellip;</em></li>
-      </ul>
-    </div>
+<!-- VIEW 2: Class Detail -->
+<div id="view-class" class="view">
+<div class="class-hero">
+<h1 id="classTitle"></h1>
+<p class="class-sub" id="classSub"></p>
+<div class="class-hero-line"></div>
+</div>
+<div class="container">
+<button type="button" class="back-btn" id="backToClasses">
+<svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+All Inductees
+</button>
+<div id="classInductees" class="stagger"></div>
+</div>
+</div>
 
-    <div class="class-block">
-      <h3>Class of 2002</h3>
-      <ul>
-        <li>Anson Dorrance</li>
-        <li><em>Add remaining 2002 inductees&hellip;</em></li>
-      </ul>
-    </div>
+<!-- VIEW 3: Individual Bio -->
+<div id="view-bio" class="view">
+<div class="bio-hero">
+<div class="bio-hero-inner">
+<div class="bio-hero-photo"><img id="bioImg" src="" alt=""></div>
+<div class="bio-hero-text">
+<div class="bio-class-tag" id="bioClass"></div>
+<h1 id="bioName"></h1>
+<p class="short-desc" id="bioShort"></p>
+</div>
+</div>
+</div>
+<div class="container">
+<button type="button" class="back-btn" id="backToClass">
+<svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+<span id="backToClassLabel">Back</span>
+</button>
+</div>
+<div class="bio-body">
+<div class="bio-body-text" id="bioText"></div>
+</div>
+<div class="bio-nav">
+<button type="button" class="bio-nav-btn" id="prevBtn"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg> Previous</button>
+<button type="button" class="bio-nav-btn" id="nextBtn">Next <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+</div>
+</div>
 
-    <div class="class-block">
-      <h3>Class of 2001</h3>
-      <ul>
-        <li>Carla Overbeck</li>
-        <li>Frank Ponce</li>
-        <li>David Sanford</li>
-        <li>Anita Stilley</li>
-      </ul>
-    </div>
+<script src="../js/inductees-data.js"></script>
+<script>
+const logoUrl = "https://static.wixstatic.com/media/b61df5_91e6ffbf67a14644b612d7ea3293baaa~mv2.png/v1/fill/w_226,h_223,al_c,q_85,enc_avif,quality_auto/b61df5_91e6ffbf67a14644b612d7ea3293baaa~mv2.png";
 
-    <div class="class-block">
-      <h3>Class of 1997 &mdash; Inaugural Class</h3>
-      <ul>
-        <li><em>Add inaugural inductees&hellip;</em></li>
-      </ul>
-    </div>
+const byYear = {};
+inductees.forEach(i => { if (!byYear[i.year]) byYear[i.year] = []; byYear[i.year].push(i); });
+const years = Object.keys(byYear).sort((a,b) => b - a);
 
-    <p style="margin-top:30px;color:#888;font-size:14px;">
-      <em>Note: This roster is a starting point. Send me the complete list of inductees by year (and photos) and I'll fill in every class.</em>
-    </p>
-  </main>
+let currentYear = null;
+let currentIndex = 0;
 
-  <script src="../js/site.js"></script>
+function scrollToTop() {
+window.scrollTo(0,0);
+document.documentElement.scrollTop = 0;
+document.body.scrollTop = 0;
+var top = document.getElementById('page-top');
+if (top) top.scrollIntoView(true);
+}
+
+function showView(id) {
+document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+// Show/hide floating home button
+var fb = document.getElementById('floatHome');
+if (id === 'view-classes') { fb.classList.remove('visible'); }
+else { fb.classList.add('visible'); }
+scrollToTop();
+setTimeout(scrollToTop, 50);
+setTimeout(scrollToTop, 200);
+}
+
+// Floating home button
+document.getElementById('floatHome').addEventListener('click', function() {
+showView('view-classes');
+});
+
+// === VIEW 1 ===
+function renderClasses(filter) {
+const grid = document.getElementById('classesGrid');
+grid.innerHTML = '';
+years.forEach((yr, i) => {
+let names = byYear[yr].map(i => i.name);
+if (filter) {
+const t = filter.toLowerCase();
+const matched = names.filter(n => n.toLowerCase().includes(t));
+if (!matched.length && !yr.includes(t)) return;
+}
+const card = document.createElement('div');
+card.className = 'class-card';
+card.style.animationDelay = (i * .04) + 's';
+card.innerHTML = '<div class="class-card-img"><img src="' + logoUrl + '" alt=""></div><div class="class-card-body"><div class="class-card-year">Class of ' + yr + '</div><div class="class-card-names">' + names.join(', ') + '</div><span class="class-card-count">' + names.length + ' inductee' + (names.length > 1 ? 's' : '') + '</span></div>';
+card.addEventListener('click', () => showClass(yr));
+grid.appendChild(card);
+});
+}
+document.getElementById('searchInput').addEventListener('input', e => renderClasses(e.target.value.trim()));
+renderClasses();
+
+// === VIEW 2 ===
+function showClass(yr) {
+currentYear = yr;
+const title = document.getElementById('classTitle');
+title.innerHTML = '<span class="year-highlight">' + yr + '</span>North Carolina Soccer Hall of Fame';
+document.getElementById('classSub').textContent = byYear[yr].length + ' inductee' + (byYear[yr].length > 1 ? 's' : '') + ' honored';
+
+const container = document.getElementById('classInductees');
+container.innerHTML = '';
+byYear[yr].forEach((person, idx) => {
+const row = document.createElement('div');
+row.className = 'inductee-card';
+row.style.animationDelay = (idx * .08) + 's';
+row.innerHTML = '<div class="inductee-photo-wrap"><div class="inductee-photo"><img src="' + person.img + '" alt="' + person.name + '"></div></div><div class="inductee-info"><div class="inductee-year-tag">Class of ' + yr + '</div><h2>' + person.name + '</h2><p>' + person.desc + '</p><button class="read-more-btn">Read More →</button></div>';
+row.querySelector('.read-more-btn').addEventListener('click', (e) => { e.stopPropagation(); showBio(yr, idx); });
+container.appendChild(row);
+});
+showView('view-class');
+}
+document.getElementById('backToClasses').onclick = function(e) { e.preventDefault(); e.stopPropagation(); showView('view-classes'); return false; };
+
+// === VIEW 3 ===
+function showBio(yr, idx) {
+currentYear = yr;
+currentIndex = idx;
+const person = byYear[yr][idx];
+
+document.getElementById('bioClass').textContent = 'Class of ' + yr;
+document.getElementById('bioName').textContent = person.name;
+document.getElementById('bioShort').textContent = person.desc;
+document.getElementById('bioImg').src = person.img;
+document.getElementById('bioImg').alt = person.name;
+document.getElementById('backToClassLabel').textContent = 'Class of ' + yr;
+
+const bioText = document.getElementById('bioText');
+if (person.bio && person.bio.length) {
+bioText.innerHTML = person.bio.map(p => '<p>' + p + '</p>').join('');
+} else {
+bioText.innerHTML = '<p>' + person.desc + '</p>';
+}
+
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const total = byYear[yr].length;
+
+if (idx <= 0) { prevBtn.classList.add('disabled'); prevBtn.onclick = null; }
+else { prevBtn.classList.remove('disabled'); prevBtn.onclick = () => showBio(yr, idx - 1); }
+if (idx >= total - 1) { nextBtn.classList.add('disabled'); nextBtn.onclick = null; }
+else { nextBtn.classList.remove('disabled'); nextBtn.onclick = () => showBio(yr, idx + 1); }
+
+showView('view-bio');
+}
+document.getElementById('backToClass').onclick = function(e) { e.preventDefault(); e.stopPropagation(); showClass(currentYear); return false; };
+</script>
+<script src="../js/site.js"></script>
 </body>
 </html>

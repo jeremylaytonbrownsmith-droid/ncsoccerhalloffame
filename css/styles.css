@@ -496,6 +496,17 @@ img { max-width: 100%; display: block; }
   max-width: 800px;
   margin: 0 auto 30px;
 }
+.partners a { display: inline-flex; }
+.partners img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s, filter 0.2s;
+}
+.partners a:hover img {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
+}
 .partners .placeholder {
   width: 64px;
   height: 64px;
