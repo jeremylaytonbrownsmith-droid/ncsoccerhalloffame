@@ -57,7 +57,7 @@
 
   // ---- Footer ----
   var partners = [
-    { img: 'https://static.wixstatic.com/media/b61df5_fdb07a459a29429a9f559803307b8ff6~mv2.png', href: '' },
+    { img: 'https://static.wixstatic.com/media/b61df5_fdb07a459a29429a9f559803307b8ff6~mv2.png', href: 'https://www.ncasasoccer.org/' },
     { img: 'https://static.wixstatic.com/media/b61df5_a761ec36c86346d88ff9290cdad08bcf~mv2.png', href: 'https://www.northcarolinafc.com/' },
     { img: 'https://static.wixstatic.com/media/b61df5_74ed4cb049d74de28faf66a911b9c020~mv2.png', href: 'https://www.ncsoccer.org/' },
     { img: 'https://static.wixstatic.com/media/b61df5_d3785870bb324973b0bfaca656742bcf~mv2.png', href: 'https://www.soccer.com/' },
@@ -274,4 +274,27 @@
       if (moved) { e.preventDefault(); e.stopPropagation(); }
     }, true);
   });
+
+  // ---- Home hero: text parallax-scrolls over the video --------------
+  if (page === 'home' && !(window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var heroContent = document.querySelector('.hero .hero-content');
+    var heroVideo = document.querySelector('.hero video');
+    var hTick = false;
+    function heroParallax() {
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      if (heroContent) {
+        heroContent.style.transform = 'translateY(' + (y * 0.45).toFixed(1) + 'px)';
+        heroContent.style.opacity = Math.max(0, 1 - y / 650).toFixed(3);
+      }
+      if (heroVideo) {
+        heroVideo.style.transform = 'translateY(' + (y * 0.15).toFixed(1) + 'px) scale(1.12)';
+      }
+      hTick = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!hTick) { requestAnimationFrame(heroParallax); hTick = true; }
+    }, { passive: true });
+    heroParallax();
+  }
 })();
