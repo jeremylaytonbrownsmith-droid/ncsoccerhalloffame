@@ -89,4 +89,66 @@
       toggle.setAttribute('aria-expanded', String(open));
     });
   }
+
+  // ---- Back-to-top button ----
+  var toTop = document.createElement('button');
+  toTop.className = 'to-top';
+  toTop.setAttribute('aria-label', 'Back to top');
+  toTop.innerHTML = '&#8593;';
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  body.appendChild(toTop);
+
+  // ---- Header elevation + back-to-top visibility on scroll ----
+  var header = document.querySelector('.site-header');
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if (header) header.classList.toggle('scrolled', y > 24);
+    toTop.classList.toggle('show', y > 480);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---- Scroll reveal -------------------------------------------------
+  // Auto-tag a curated set of static content blocks (pages that already
+  // animate their own cards on load are intentionally excluded).
+  var reduce = window.matchMedia &&
+               window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var autoSelectors = [
+    '.info-card', '.board-card', '.officer-card', '.dl-card',
+    '.deadline-banner', '.gallery-card', '.form-card',
+    '.section-heading', '.about-section'
+  ].join(',');
+  document.querySelectorAll(autoSelectors).forEach(function (el) {
+    if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', '');
+  });
+
+  var targets = [].slice.call(document.querySelectorAll('[data-reveal]'));
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    targets.forEach(function (el) { el.classList.add('is-visible'); });
+  } else {
+    // Gentle stagger: cascade siblings that share a parent.
+    var seen = [];
+    targets.forEach(function (el) {
+      var p = el.parentNode;
+      var idx = seen.indexOf(p);
+      var count;
+      if (idx === -1) { seen.push(p); count = 0; p.__revealCount = 1; }
+      else { count = p.__revealCount++; }
+      el.style.transitionDelay = Math.min(count * 90, 360) + 'ms';
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    targets.forEach(function (el) { io.observe(el); });
+  }
 })();
