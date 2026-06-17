@@ -998,3 +998,11 @@ body[data-page="home"] .hero-content h1 {
 
 /* Center both footer sponsor logos in their columns (mirror each other) */
 .footer-main > .footer-sponsor { justify-self: center; }
+
+/* Square home news tiles */
+.gallery-track { grid-auto-columns: minmax(300px, 340px); }
+.gallery-track a.gallery-item img { height: auto; aspect-ratio: 1 / 1; object-fit: cover; }
+@media (max-width: 600px) {
+  .gallery-track { grid-auto-columns: 80vw; }
+  .gallery-track a.gallery-item img { height: auto; aspect-ratio: 1 / 1; }
+}
