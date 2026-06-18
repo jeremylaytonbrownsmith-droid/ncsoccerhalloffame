@@ -91,27 +91,30 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
   <div class="form-section">
     <div class="form-card">
       <!-- FORM -->
-      <div id="formFields">
+      <form id="contactForm" novalidate>
         <div class="form-row">
           <div class="form-group" style="margin-bottom:0">
             <label class="form-label" for="fname">First Name</label>
-            <input class="form-input" type="text" id="fname" placeholder="First Name" required>
+            <input class="form-input" type="text" id="fname" name="First Name" placeholder="First Name" required>
           </div>
           <div class="form-group" style="margin-bottom:0">
             <label class="form-label" for="lname">Last Name</label>
-            <input class="form-input" type="text" id="lname" placeholder="Last Name" required>
+            <input class="form-input" type="text" id="lname" name="Last Name" placeholder="Last Name" required>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label" for="email">Email</label>
-          <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
+          <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="message">Message</label>
-          <textarea class="form-textarea" id="message" placeholder="How can we help you?"></textarea>
+          <textarea class="form-textarea" id="message" name="message" placeholder="How can we help you?"></textarea>
         </div>
-        <button class="form-submit" id="sendBtn">Send Message</button>
-      </div>
+        <!-- spam honeypot: real visitors leave this empty -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <p id="formError" role="alert" style="display:none;color:#c0392b;font-size:.85rem;font-weight:600;margin:0 0 .7rem"></p>
+        <button class="form-submit" id="sendBtn" type="submit">Send Message</button>
+      </form>
 
       <!-- SUCCESS -->
       <div class="form-success" id="formSuccess">
@@ -126,30 +129,83 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
 </div>
 
 <script>
-document.getElementById('sendBtn').addEventListener('click', function() {
-  var fname = document.getElementById('fname').value.trim();
-  var lname = document.getElementById('lname').value.trim();
-  var email = document.getElementById('email').value.trim();
-  var msg = document.getElementById('message').value.trim();
+(function () {
+  /* ===========================================================
+     CONTACT FORM CONFIG
+     1) Create a free form at https://formspree.io (use the inbox
+        where you want messages delivered) — it gives you an
+        endpoint like https://formspree.io/f/abcdwxyz
+     2) Paste that endpoint below in place of REPLACE_ME.
+     Until then, the form safely falls back to the visitor's email app.
+     =========================================================== */
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
+  var FALLBACK_EMAIL = 'Centerpointwebdesignbyjr@gmail.com';
 
-  if (!fname || !lname || !email) {
-    alert('Please fill in your name and email.');
-    return;
+  var form = document.getElementById('contactForm');
+  var btn = document.getElementById('sendBtn');
+  var errEl = document.getElementById('formError');
+  var successEl = document.getElementById('formSuccess');
+
+  function showError(msg) { errEl.textContent = msg; errEl.style.display = 'block'; }
+  function clearError() { errEl.textContent = ''; errEl.style.display = 'none'; }
+  function showSuccess() { form.style.display = 'none'; successEl.style.display = 'block'; }
+
+  function mailtoFallback(d) {
+    var subject = encodeURIComponent('NCSHOF Contact: ' + d['First Name'] + ' ' + d['Last Name']);
+    var body = encodeURIComponent(
+      'Name: ' + d['First Name'] + ' ' + d['Last Name'] + '\n' +
+      'Email: ' + d.email + '\n\nMessage:\n' + d.message
+    );
+    window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject=' + subject + '&body=' + body;
+    showSuccess();
   }
 
-  var subject = encodeURIComponent('NCSHOF Contact: ' + fname + ' ' + lname);
-  var body = encodeURIComponent(
-    'Name: ' + fname + ' ' + lname + '\n' +
-    'Email: ' + email + '\n\n' +
-    'Message:\n' + msg
-  );
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearError();
 
-  window.open('mailto:Centerpointwebdesignbyjr@gmail.com?subject=' + subject + '&body=' + body, '_blank');
+    var d = {
+      'First Name': document.getElementById('fname').value.trim(),
+      'Last Name': document.getElementById('lname').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      message: document.getElementById('message').value.trim(),
+      _gotcha: form.querySelector('[name="_gotcha"]').value
+    };
 
-  // Show success
-  document.getElementById('formFields').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
-});
+    if (d._gotcha) return; // silently drop bots
+    if (!d['First Name'] || !d['Last Name'] || !d.email) {
+      showError('Please fill in your first name, last name, and email.');
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) {
+      showError('Please enter a valid email address.');
+      return;
+    }
+
+    // No endpoint configured yet -> open the visitor's email app.
+    if (FORMSPREE_ENDPOINT.indexOf('REPLACE_ME') !== -1) {
+      mailtoFallback(d);
+      return;
+    }
+
+    var original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(d)
+    }).then(function (res) {
+      if (res.ok) { showSuccess(); }
+      else { throw new Error('submit failed'); }
+    }).catch(function () {
+      btn.disabled = false;
+      btn.textContent = original;
+      showError('Sorry — something went wrong. Please email us at ' + FALLBACK_EMAIL + '.');
+    });
+  });
+})();
 </script>
 <script src="../js/site.js"></script>
 </body>
