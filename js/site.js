@@ -1,25 +1,25 @@
 /* =========================================================
    Shared header + footer injection and nav behavior.
-   Each page sets <body data-page="..."> and <body data-root="...">
-   so links resolve from both the site root and the /pages folder.
+   Each page sets <body data-page="..."> to mark the active nav
+   item. All links are absolute (/inductees/, /about/, ...) so the
+   header works identically from every clean-URL page.
    ========================================================= */
 (function () {
   var body = document.body;
   var page = body.getAttribute('data-page') || '';
-  var root = body.getAttribute('data-root') || ''; // '' at root, '../' inside /pages
 
   var nav = [
-    { id: 'home',      label: 'Home',                            href: root + 'index.html' },
-    { id: 'inductees', label: 'Inductees',                       href: root + 'pages/inductees.html' },
-    { id: 'champions', label: 'National Champions Hall of Honor', href: root + 'pages/champions.html' },
-    { id: 'about',     label: 'About the HOF',                   href: root + 'pages/about.html',
+    { id: 'home',      label: 'Home',                            href: '/' },
+    { id: 'inductees', label: 'Inductees',                       href: '/inductees/' },
+    { id: 'champions', label: 'National Champions Hall of Honor', href: '/champions/' },
+    { id: 'about',     label: 'About the HOF',                   href: '/about/',
       children: [
-        { label: 'About the HOF', href: root + 'pages/about.html' },
-        { label: 'Contact Us',    href: root + 'pages/contact.html' },
+        { label: 'About the HOF', href: '/about/' },
+        { label: 'Contact Us',    href: '/contact/' },
       ]
     },
-    { id: 'pictures',  label: 'NCSHOF Pictures', href: root + 'pages/pictures.html' },
-    { id: 'submit',    label: 'Submit a Candidate', href: root + 'pages/submit.html' },
+    { id: 'pictures',  label: 'NCSHOF Pictures', href: '/pictures/' },
+    { id: 'submit',    label: 'Submit a Candidate', href: '/submit/' },
   ];
 
   // ---- Header ----
@@ -49,7 +49,7 @@
 
   var header =
     '<header class="site-header"><nav class="nav-inner" aria-label="Primary">' +
-      '<a class="brand" href="' + root + 'index.html" aria-label="NC Soccer Hall of Fame — Home">' + crest + '</a>' +
+      '<a class="brand" href="/" aria-label="NC Soccer Hall of Fame — Home">' + crest + '</a>' +
       '<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>' +
       '<ul class="nav-links">' + links + '</ul>' +
       '<div class="nav-right"><a class="nav-ig" href="' + igLink + '" target="_blank" rel="noopener" aria-label="Instagram">' + igSvg + '</a></div>' +
