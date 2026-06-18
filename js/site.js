@@ -14,7 +14,6 @@
     { id: 'champions', label: 'National Champions Hall of Honor', href: '/champions/' },
     { id: 'about',     label: 'About the HOF',                   href: '/about/',
       children: [
-        { label: 'About the HOF', href: '/about/' },
         { label: 'Contact Us',    href: '/contact/' },
       ]
     },
