@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!-- v1.0 - Tickets -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/gif" href="https://static.wixstatic.com/media/b61df5_2d78aa055ed941998b13bb85c7b266a7~mv2.gif">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tickets | NC Soccer HOF</title>
+<meta name="description" content="Purchase tickets and reserve your hotel room for the North Carolina Soccer Hall of Fame Class of 2026 Induction Dinner.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--deep:#0d1f3c;--gold:#c5a55a;--gold-l:#e0cc8a;--gold-d:#a68b3c;
+  --cream:#f6f1e7;--white:#fff;--g200:#e8e4db;--g400:#b0aa9e;--g600:#6b6860;--g800:#3a3832;
+}
+html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--navy);-webkit-font-smoothing:antialiased}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--deep) 60%,#132f52 100%);padding:3rem 1rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(197,165,90,.12),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(197,165,90,.06);z-index:0}
+.hero-ring-1{width:600px;height:600px;top:-300px;right:-150px}
+.hero-ring-2{width:350px;height:350px;bottom:-200px;left:-80px;border-color:rgba(255,255,255,.03)}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.4rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);position:relative;z-index:1;animation:fadeUp .7s ease both}
+.hero h1 span{color:var(--gold)}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:1rem auto 0;animation:goldLine .8s ease .3s both;transform-origin:center;position:relative;z-index:1}
+
+/* ===== CONTAINER ===== */
+.container{max-width:960px;margin:0 auto;padding:0 1.5rem}
+
+/* ===== EVENT BANNER ===== */
+.event-banner{background:linear-gradient(135deg,var(--navy),var(--deep));border-radius:12px;padding:1.8rem 2rem;margin:2rem 0;box-shadow:0 6px 24px rgba(10,22,40,.2);border-left:4px solid var(--gold);position:relative;overflow:hidden}
+.event-banner::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(197,165,90,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.03) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+.event-banner-inner{position:relative;z-index:1;display:flex;align-items:center;gap:1.5rem}
+.event-date-box{background:rgba(197,165,90,.12);border:1px solid rgba(197,165,90,.25);border-radius:10px;padding:1rem 1.2rem;text-align:center;flex-shrink:0;min-width:90px}
+.event-date-month{font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold)}
+.event-date-day{font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--white);line-height:1}
+.event-date-year{font-family:'Oswald',sans-serif;font-size:.75rem;font-weight:400;color:rgba(255,255,255,.5);margin-top:.1rem}
+.event-details{color:var(--white);flex:1}
+.event-name{font-family:'Oswald',sans-serif;font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+.event-name em{color:var(--gold);font-style:normal}
+.event-info-row{display:flex;flex-wrap:wrap;gap:.8rem 1.5rem}
+.event-info-item{display:flex;align-items:center;gap:.4rem;font-size:.85rem;color:rgba(255,255,255,.65)}
+.event-info-item svg{width:16px;height:16px;fill:var(--gold);flex-shrink:0}
+.event-info-item strong{color:var(--white);font-weight:500}
+
+/* ===== TICKET CARDS ===== */
+.tickets-section{padding:0 0 2rem}
+.section-heading{display:flex;align-items:center;gap:14px;margin-bottom:1.5rem}
+.section-bar{width:4px;height:36px;border-radius:2px;background:linear-gradient(180deg,var(--gold),var(--gold-d));flex-shrink:0}
+.section-heading h2{font-family:'Oswald',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.section-heading h2 span{color:var(--gold-d)}
+
+.tickets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+
+.ticket-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(10,22,40,.08);transition:transform .3s,box-shadow .3s;border:1px solid var(--g200);display:flex;flex-direction:column}
+.ticket-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,.14)}
+
+.ticket-card-img{width:100%;height:200px;overflow:hidden;position:relative}
+.ticket-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.ticket-card:hover .ticket-card-img img{transform:scale(1.04)}
+.ticket-card-badge{position:absolute;top:1rem;left:1rem;background:var(--navy);color:var(--gold);font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:.3rem .8rem;border-radius:4px}
+
+.ticket-card-body{padding:1.5rem;display:flex;flex-direction:column;flex:1}
+.ticket-card-type{font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.3rem}
+.ticket-card-price{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;color:var(--gold-d);margin-bottom:.5rem}
+.ticket-card-price span{font-size:.75rem;font-weight:500;color:var(--g400);text-transform:uppercase;letter-spacing:.08em;margin-left:.3rem}
+.ticket-card-desc{font-size:.88rem;color:var(--g600);line-height:1.6;margin-bottom:1.2rem;flex:1}
+
+.ticket-btn{display:block;width:100%;text-align:center;font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;text-decoration:none;padding:.8rem 1rem;border-radius:8px;transition:transform .2s,box-shadow .2s;margin-bottom:.6rem}
+.ticket-btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--navy);box-shadow:0 3px 12px rgba(197,165,90,.3)}
+.ticket-btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(197,165,90,.4)}
+.ticket-btn-secondary{background:var(--cream);color:var(--navy);border:1px solid var(--g200)}
+.ticket-btn-secondary:hover{border-color:var(--gold);transform:translateY(-2px)}
+.ticket-btn-pending{background:var(--g200);color:var(--g400);cursor:default;pointer-events:none}
+.ticket-btn-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:.75rem;color:var(--g400);text-align:center;display:block}
+
+/* ===== ADS SECTION ===== */
+.ads-section{padding:0 0 2rem;border-top:1px solid var(--g200);padding-top:2rem}
+.ads-intro{font-size:.93rem;line-height:1.8;color:var(--g600);margin-bottom:1.5rem;max-width:720px}
+.ads-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.2rem}
+.ad-card{background:var(--white);border:1px solid var(--g200);border-radius:12px;padding:1.5rem;text-align:center;box-shadow:0 3px 16px rgba(10,22,40,.08);transition:transform .3s,box-shadow .3s}
+.ad-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,.14)}
+.ad-card-tier{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.ad-card-price{font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:var(--gold-d);margin-bottom:1rem}
+.ads-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:.85rem;color:var(--g600);text-align:center}
+.ads-note a{color:var(--gold-d);font-weight:600}
+
+/* ===== HOTEL SECTION ===== */
+.hotel-section{padding:2rem 0 2.5rem;border-top:1px solid var(--g200)}
+.hotel-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(10,22,40,.08);transition:transform .3s,box-shadow .3s;display:block;text-decoration:none;color:var(--navy);border:1px solid var(--g200)}
+.hotel-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,.14)}
+.hotel-card-img{width:100%;overflow:hidden}
+.hotel-card-img img{width:100%;display:block;transition:transform .5s}
+.hotel-card:hover .hotel-card-img img{transform:scale(1.02)}
+.hotel-card-body{padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.hotel-card-text{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.hotel-card-cta{font-family:'Oswald',sans-serif;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);display:inline-flex;align-items:center;gap:.3rem}
+.hotel-card-cta svg{width:14px;height:14px;fill:currentColor}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:769px){
+  .hero{padding:3.5rem 2rem 2.5rem}
+  .container{padding:0 2rem}
+}
+@media(max-width:768px){
+  .tickets-grid{grid-template-columns:1fr}
+  .ads-grid{grid-template-columns:1fr}
+  .event-banner{padding:1.5rem}
+  .event-banner-inner{flex-direction:column;text-align:center}
+  .event-info-row{justify-content:center}
+}
+@media(max-width:480px){
+  .hero{padding:2.5rem 1rem 1.8rem}
+  .container{padding:0 1rem}
+  .event-banner{padding:1.2rem}
+  .ticket-card-body{padding:1.2rem}
+  .ticket-card-img{height:160px}
+}
+</style>
+</head>
+<body data-page="tickets">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <h1>Dinner <span>Tickets & Hotel</span></h1>
+  <div class="hero-line"></div>
+</div>
+
+<div class="container">
+
+  <!-- EVENT BANNER -->
+  <div class="event-banner">
+    <div class="event-banner-inner">
+      <div class="event-date-box">
+        <div class="event-date-month">Feb</div>
+        <div class="event-date-day">27</div>
+        <div class="event-date-year">2027</div>
+      </div>
+      <div class="event-details">
+        <div class="event-name">NC Soccer Hall of Fame <em>Class of 2026 Induction Dinner</em></div>
+        <div class="event-info-row">
+          <div class="event-info-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <strong>Sheraton Greensboro</strong> — Greensboro, NC
+          </div>
+          <div class="event-info-item">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            Reception <strong>5:30 PM</strong>
+          </div>
+          <div class="event-info-item">
+            <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+            Dinner <strong>6:30 PM</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TICKETS -->
+  <div class="tickets-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Purchase <span>Tickets</span></h2>
+    </div>
+
+    <div class="tickets-grid">
+      <!-- TABLE TICKETS -->
+      <div class="ticket-card">
+        <div class="ticket-card-img">
+          <img src="https://static.wixstatic.com/media/b61df5_7563d910b68e4f26a069db1558cee3aa~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/My%20project.jpg" alt="NCSHOF Dinner" loading="lazy">
+          <div class="ticket-card-badge">Table</div>
+        </div>
+        <div class="ticket-card-body">
+          <div class="ticket-card-type">8-Person Table</div>
+          <div class="ticket-card-price">$800 <span>per table</span></div>
+          <div class="ticket-card-desc">Reserve a full table for your group at the induction dinner.</div>
+          <a class="ticket-btn ticket-btn-primary" href="https://square.link/u/c0kTUMaX" target="_blank" rel="noopener">Buy Table Tickets</a>
+          <a class="ticket-btn ticket-btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSdngGgd42sUf7fXApOdM09x71QI8dwU3Pn1HwVyDh-g9jqR-w/viewform?usp=header" target="_blank" rel="noopener">Submit Table Names</a>
+          <span class="ticket-btn-note">Please fill out the name form after purchasing</span>
+        </div>
+      </div>
+
+      <!-- SINGLE TICKETS -->
+      <div class="ticket-card">
+        <div class="ticket-card-img">
+          <img src="https://static.wixstatic.com/media/b61df5_7563d910b68e4f26a069db1558cee3aa~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/My%20project.jpg" alt="NCSHOF Dinner" loading="lazy">
+          <div class="ticket-card-badge">Individual</div>
+        </div>
+        <div class="ticket-card-body">
+          <div class="ticket-card-type">Single Ticket</div>
+          <div class="ticket-card-price">$100 <span>per seat</span></div>
+          <div class="ticket-card-desc">Purchase an individual seat at the induction dinner.</div>
+          <a class="ticket-btn ticket-btn-primary" href="https://square.link/u/yZP5tmeb" target="_blank" rel="noopener">Buy Single Ticket</a>
+          <a class="ticket-btn ticket-btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScBxQ2my3Ryy5puVPNL4m88UWpHWG03NGqZz9m-_nZy6AMJWg/viewform?usp=header" target="_blank" rel="noopener">Submit Your Name</a>
+          <span class="ticket-btn-note">Please fill out the name form after purchasing</span>
+        </div>
+      </div>
+
+      <!-- KID TICKETS -->
+      <div class="ticket-card">
+        <div class="ticket-card-img">
+          <img src="https://static.wixstatic.com/media/b61df5_7563d910b68e4f26a069db1558cee3aa~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/My%20project.jpg" alt="NCSHOF Dinner" loading="lazy">
+          <div class="ticket-card-badge">Kid's Ticket</div>
+        </div>
+        <div class="ticket-card-body">
+          <div class="ticket-card-type">Kid's Ticket</div>
+          <div class="ticket-card-price">$35 <span>per seat</span></div>
+          <div class="ticket-card-desc">For children attending the induction dinner.</div>
+          <span class="ticket-btn ticket-btn-pending">Purchase Link Coming Soon</span>
+          <span class="ticket-btn-note">Check back soon, or submit your name once purchasing is live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADVERTISE IN THE PROGRAM -->
+  <div class="ads-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Advertise in the <span>Program</span></h2>
+    </div>
+    <p class="ads-intro">This year, your business or organization can be featured in the official program for the North Carolina Soccer Hall of Fame Induction Dinner. Reach soccer fans, players, coaches, and community leaders across North Carolina while supporting the celebration of our state's soccer legacy!</p>
+
+    <div class="ads-grid">
+      <div class="ad-card">
+        <div class="ad-card-tier">Full Page Ad</div>
+        <div class="ad-card-price">$500</div>
+        <a class="ticket-btn ticket-btn-primary" href="https://square.link/u/9qUD3q2r" target="_blank" rel="noopener">Buy Full Page</a>
+      </div>
+      <div class="ad-card">
+        <div class="ad-card-tier">Half Page Ad</div>
+        <div class="ad-card-price">$275</div>
+        <a class="ticket-btn ticket-btn-primary" href="https://square.link/u/eIizkiIH" target="_blank" rel="noopener">Buy Half Page</a>
+      </div>
+      <div class="ad-card">
+        <div class="ad-card-tier">Quarter Page Ad</div>
+        <div class="ad-card-price">$150</div>
+        <a class="ticket-btn ticket-btn-primary" href="https://square.link/u/OSy0xZKt" target="_blank" rel="noopener">Buy Quarter Page</a>
+      </div>
+    </div>
+    <p class="ads-note">Please fill out the <a href="https://docs.google.com/forms/d/e/1FAIpQLSebqVoX0H2PATefp0VPwtq4RlxHNEv1JoiSIsUY4xJonmQzxA/viewform?usp=header" target="_blank" rel="noopener">Ad submission form</a> after purchasing.</p>
+  </div>
+
+  <!-- HOTEL INFO -->
+  <div class="hotel-section">
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      <h2>Hotel <span>Information</span></h2>
+    </div>
+    <a class="hotel-card" href="https://book.passkey.com/go/NCYouthSoccerHOF2026" target="_blank" rel="noopener">
+      <div class="hotel-card-img">
+        <img src="https://static.wixstatic.com/media/b61df5_048fc7d6eb5e465794faa69ea48bf44c~mv2.png/v1/fill/w_960,h_492,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/Screenshot%202025-12-17%20at%203_28_09%E2%80%AFPM.png" alt="Hotel Booking Information" loading="lazy">
+      </div>
+      <div class="hotel-card-body">
+        <div class="hotel-card-text">Book Your Hotel Room</div>
+        <div class="hotel-card-cta">Reserve Now <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+<script src="/js/site.js"></script>
+</body>
+</html>
