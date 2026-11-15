@@ -19,7 +19,7 @@
     },
     { id: 'pictures',  label: 'NCSHOF Pictures', href: '/pictures/' },
     { id: 'submit',    label: 'Submit a Candidate', href: '/submit/' },
-    { id: 'tickets',   label: 'Tickets', href: '/tickets/' },
+    { id: 'tickets',   label: 'Tickets & Ads', href: '/tickets/' },
   ];
 
   // ---- Header ----

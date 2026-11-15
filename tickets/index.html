@@ -79,7 +79,6 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
 .ticket-btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(197,165,90,.4)}
 .ticket-btn-secondary{background:var(--cream);color:var(--navy);border:1px solid var(--g200)}
 .ticket-btn-secondary:hover{border-color:var(--gold);transform:translateY(-2px)}
-.ticket-btn-pending{background:var(--g200);color:var(--g400);cursor:default;pointer-events:none}
 .ticket-btn-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:.75rem;color:var(--g400);text-align:center;display:block}
 
 /* ===== ADS SECTION ===== */
@@ -133,7 +132,7 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
   <div class="hero-grid"></div>
   <div class="hero-ring hero-ring-1"></div>
   <div class="hero-ring hero-ring-2"></div>
-  <h1>Dinner <span>Tickets & Hotel</span></h1>
+  <h1>Dinner <span>Tickets & Advertising</span></h1>
   <div class="hero-line"></div>
 </div>
 
@@ -217,8 +216,9 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
           <div class="ticket-card-type">Kid's Ticket</div>
           <div class="ticket-card-price">$35 <span>per seat</span></div>
           <div class="ticket-card-desc">For children attending the induction dinner.</div>
-          <span class="ticket-btn ticket-btn-pending">Purchase Link Coming Soon</span>
-          <span class="ticket-btn-note">Check back soon, or submit your name once purchasing is live</span>
+          <a class="ticket-btn ticket-btn-primary" href="https://square.link/u/HkYBq2DI" target="_blank" rel="noopener">Buy Kid's Ticket</a>
+          <a class="ticket-btn ticket-btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScBxQ2my3Ryy5puVPNL4m88UWpHWG03NGqZz9m-_nZy6AMJWg/viewform?usp=header" target="_blank" rel="noopener">Submit Your Name</a>
+          <span class="ticket-btn-note">Please fill out the name form after purchasing</span>
         </div>
       </div>
     </div>
@@ -258,15 +258,9 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
       <div class="section-bar"></div>
       <h2>Hotel <span>Information</span></h2>
     </div>
-    <a class="hotel-card" href="https://book.passkey.com/go/NCYouthSoccerHOF2026" target="_blank" rel="noopener">
-      <div class="hotel-card-img">
-        <img src="https://static.wixstatic.com/media/b61df5_048fc7d6eb5e465794faa69ea48bf44c~mv2.png/v1/fill/w_960,h_492,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/Screenshot%202025-12-17%20at%203_28_09%E2%80%AFPM.png" alt="Hotel Booking Information" loading="lazy">
-      </div>
-      <div class="hotel-card-body">
-        <div class="hotel-card-text">Book Your Hotel Room</div>
-        <div class="hotel-card-cta">Reserve Now <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
-      </div>
-    </a>
+    <div class="hotel-card" style="padding:1.5rem;text-align:center">
+      <div class="hotel-card-text">Hotel booking information coming soon</div>
+    </div>
   </div>
 
 </div>
