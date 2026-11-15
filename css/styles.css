@@ -913,6 +913,22 @@ body[data-page="home"] .hero-content h1 {
 }
 
 /* =========================================================
+   Crest never collapses: the menu wraps instead
+   The seven pills are ~1200px wide in a single row. On a laptop-width
+   window the old grid (minmax(0,1fr) auto minmax(0,1fr)) let the two side
+   columns shrink to ZERO so the pills could stay on one line — the crest
+   was then overlapped by the HOME pill (Chrome) or squeezed to a dot
+   (Safari). Now the side columns keep room for the crest / Instagram
+   button, and when the pills don't fit they wrap onto a second centred row.
+   ========================================================= */
+@media (min-width: 861px) {
+  .nav-inner { grid-template-columns: minmax(56px, 1fr) minmax(0, auto) minmax(56px, 1fr); }
+  .nav-links { flex-wrap: wrap; justify-content: center; row-gap: 6px; min-width: 0; }
+}
+.brand .crest { flex-shrink: 0; }
+.brand { flex-shrink: 0; }
+
+/* =========================================================
    Header breathing room: wider bar, tighter pills
    ========================================================= */
 .nav-inner { max-width: 1280px; }
