@@ -895,21 +895,13 @@ body[data-page="home"] .hero { height: 100vh; min-height: 560px; }
 }
 
 /* =========================================================
-   Bigger crest logo + larger hero title (home)
+   Larger hero title (home) — crest logo stays the same size
+   on every page, including home
    ========================================================= */
-body[data-page="home"] .brand .crest { width: 58px; height: 58px; }
-body[data-page="home"] .brand {
-  font-size: 16px;
-  gap: 12px;
-}
 body[data-page="home"] .hero-content h1 {
   font-size: clamp(46px, 9.5vw, 116px);
   letter-spacing: 5px;
   line-height: 1.02;
-}
-@media (max-width: 600px) {
-  body[data-page="home"] .brand .crest { width: 46px; height: 46px; }
-  body[data-page="home"] .brand { font-size: 13px; }
 }
 
 /* =========================================================
