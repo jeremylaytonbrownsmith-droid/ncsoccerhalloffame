@@ -36,7 +36,7 @@
   }).join('');
 
   var crest =
-    '<img class="crest" src="https://static.wixstatic.com/media/b61df5_91e6ffbf67a14644b612d7ea3293baaa~mv2.png" ' +
+    '<img class="crest" src="https://static.wixstatic.com/media/b61df5_91e6ffbf67a14644b612d7ea3293baaa~mv2.png/v1/fill/w_100,h_100,al_c,q_85,enc_avif,quality_auto/b61df5_91e6ffbf67a14644b612d7ea3293baaa~mv2.png" ' +
     'alt="NC Soccer Hall of Fame logo">';
 
   var igSvg =
