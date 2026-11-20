@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- v1.0 - Ticket Confirmation -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/gif" href="https://static.wixstatic.com/media/b61df5_2d78aa055ed941998b13bb85c7b266a7~mv2.gif">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You | NC Soccer HOF</title>
+<meta name="description" content="Thank you for your purchase. Submit your name or ad details for the NC Soccer Hall of Fame Induction Dinner.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--deep:#0d1f3c;--gold:#c5a55a;--gold-l:#e0cc8a;--gold-d:#a68b3c;
+  --cream:#f6f1e7;--white:#fff;--g200:#e8e4db;--g400:#b0aa9e;--g600:#6b6860;
+}
+html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--navy);-webkit-font-smoothing:antialiased}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes goldLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--deep) 60%,#132f52 100%);padding:3.5rem 1rem 3rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(197,165,90,.12),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(197,165,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(197,165,90,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-crest{width:84px;height:84px;border-radius:50%;margin:0 auto 1.2rem;position:relative;z-index:1;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeUp .6s ease both}
+.hero-check{width:48px;height:48px;border-radius:50%;background:rgba(197,165,90,.15);border:1px solid rgba(197,165,90,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;position:relative;z-index:1;animation:fadeUp .6s ease both}
+.hero-check svg{width:24px;height:24px;fill:var(--gold)}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,5vw,2.6rem);text-transform:uppercase;letter-spacing:.06em;color:var(--white);position:relative;z-index:1;animation:fadeUp .7s ease .1s both}
+.hero h1 span{color:var(--gold)}
+.hero .subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.6);margin-top:.7rem;font-size:clamp(.9rem,2.5vw,1.05rem);animation:fadeUp .7s ease .2s both;position:relative;z-index:1;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:1.2rem auto 0;animation:goldLine .8s ease .35s both;transform-origin:center;position:relative;z-index:1}
+
+/* ===== CONTAINER ===== */
+.container{max-width:900px;margin:0 auto;padding:0 1.5rem}
+
+/* ===== NEXT STEP SECTION ===== */
+.next-section{padding:3rem 0 3.5rem}
+.next-intro{text-align:center;font-size:.95rem;line-height:1.8;color:var(--g600);max-width:640px;margin:0 auto 2.2rem}
+.next-intro strong{color:var(--navy)}
+
+.forms-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+
+.form-card{background:var(--white);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:.9rem;box-shadow:0 3px 16px rgba(10,22,40,.08);border:1px solid var(--g200);transition:transform .3s,box-shadow .3s}
+.form-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,.14)}
+.form-card-badge{display:inline-flex;align-self:flex-start;background:var(--navy);color:var(--gold);font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:.3rem .8rem;border-radius:4px}
+.form-card-title{font-family:'Oswald',sans-serif;font-size:1.05rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.form-card-desc{font-size:.85rem;line-height:1.6;color:var(--g600);flex:1}
+.form-btn{display:block;width:100%;text-align:center;font-family:'Oswald',sans-serif;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;text-decoration:none;padding:.75rem 1rem;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--navy);box-shadow:0 3px 12px rgba(197,165,90,.3);transition:transform .2s,box-shadow .2s}
+.form-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(197,165,90,.4)}
+
+/* ===== BACK LINK ===== */
+.back-row{text-align:center;padding:0 0 3rem}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;font-family:'Oswald',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);text-decoration:none}
+.back-link:hover{text-decoration:underline}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:769px){
+  .hero{padding:4rem 2rem 3.5rem}
+  .container{padding:0 2rem}
+}
+@media(max-width:600px){
+  .forms-grid{grid-template-columns:1fr}
+  .hero{padding:2.8rem 1rem 2.2rem}
+}
+</style>
+</head>
+<body data-page="tickets">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <img class="hero-crest" src="https://static.wixstatic.com/media/b61df5_91e6ffbf67a14644b612d7ea3293baaa~mv2.png/v1/fill/w_226,h_223,al_c,q_85,enc_avif,quality_auto/b61df5_91e6ffbf67a14644b612d7ea3293baaa~mv2.png" alt="NC Soccer Hall of Fame">
+  <h1>Thank You <span>For Your Purchase!</span></h1>
+  <p class="subtitle">Your support means the world to the North Carolina Soccer Hall of Fame. One last step — please submit your details below using the form that matches what you purchased.</p>
+  <div class="hero-line"></div>
+</div>
+
+<div class="container">
+  <div class="next-section">
+    <p class="next-intro">Select the form that matches your purchase so we can prepare your seating, program, and recognition for the <strong>Class of 2026 Induction Dinner</strong>.</p>
+
+    <div class="forms-grid">
+      <div class="form-card">
+        <div class="form-card-badge">Table</div>
+        <div class="form-card-title">8-Person Table</div>
+        <div class="form-card-desc">Submit the names of everyone seated at your table.</div>
+        <a class="form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdngGgd42sUf7fXApOdM09x71QI8dwU3Pn1HwVyDh-g9jqR-w/viewform?usp=header" target="_blank" rel="noopener">Submit Table Names</a>
+      </div>
+      <div class="form-card">
+        <div class="form-card-badge">Individual</div>
+        <div class="form-card-title">Single Ticket</div>
+        <div class="form-card-desc">Submit your name for your individual seat.</div>
+        <a class="form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScBxQ2my3Ryy5puVPNL4m88UWpHWG03NGqZz9m-_nZy6AMJWg/viewform?usp=header" target="_blank" rel="noopener">Submit Your Name</a>
+      </div>
+      <div class="form-card">
+        <div class="form-card-badge">Kid's Ticket</div>
+        <div class="form-card-title">Kid's Ticket</div>
+        <div class="form-card-desc">Submit your child's name for their seat.</div>
+        <a class="form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScBxQ2my3Ryy5puVPNL4m88UWpHWG03NGqZz9m-_nZy6AMJWg/viewform?usp=header" target="_blank" rel="noopener">Submit Your Name</a>
+      </div>
+      <div class="form-card">
+        <div class="form-card-badge">Advertising</div>
+        <div class="form-card-title">Program Ad</div>
+        <div class="form-card-desc">Submit your ad artwork and business details for the program.</div>
+        <a class="form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSebqVoX0H2PATefp0VPwtq4RlxHNEv1JoiSIsUY4xJonmQzxA/viewform?usp=header" target="_blank" rel="noopener">Submit Ad Details</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-row">
+    <a class="back-link" href="/tickets/">&larr; Back to Tickets &amp; Ads</a>
+  </div>
+</div>
+
+<script src="/js/site.js"></script>
+</body>
+</html>
