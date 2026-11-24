@@ -46,6 +46,25 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
 
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
 
+/* Featured (most recent) gallery: full-width, more prominent */
+.gallery-featured{display:block}
+.gallery-featured .gallery-card{display:grid;grid-template-columns:260px 1fr}
+.gallery-featured .gallery-card-header{display:flex;align-items:center}
+.gallery-featured .gallery-card-year{font-size:4rem}
+.gallery-featured .gallery-card-icon{width:56px;height:56px}
+.gallery-featured .gallery-card-icon svg{width:28px;height:28px}
+.gallery-featured .gallery-card-body{padding:2rem 2.2rem;display:flex;flex-direction:column;justify-content:center}
+.gallery-featured .gallery-card-title{font-size:1.3rem;margin-bottom:.6rem}
+.gallery-featured .gallery-card-date{font-size:1rem;margin-bottom:1.2rem}
+.gallery-featured .gallery-card-cta{font-size:.85rem}
+
+/* Hidden galleries: links kept in the page source, not shown publicly */
+.gallery-hidden{display:none}
+@media(max-width:600px){
+  .gallery-featured .gallery-card{grid-template-columns:1fr}
+  .gallery-featured .gallery-card-header{justify-content:center;padding:2rem 1.2rem}
+}
+
 .gallery-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(10,22,40,.08);transition:transform .3s,box-shadow .3s;text-decoration:none;color:var(--navy);display:block;position:relative}
 .gallery-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--gold-d));transform:scaleY(0);transition:transform .35s;transform-origin:top}
 .gallery-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,.14)}
@@ -102,7 +121,7 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
       <h2>Event <span>Galleries</span></h2>
     </div>
 
-    <div class="gallery-grid">
+    <div class="gallery-grid gallery-featured">
 
       <a class="gallery-card" href="https://www.dropbox.com/scl/fo/slgjx447fbxxihsoayiu1/ALIszqjFBwYtEbYSFWDIqLk?rlkey=4yn8v3y34t6dfxwl3tzl8sups&st=vsvmfp1d&dl=0" target="_blank" rel="noopener">
         <div class="gallery-card-header">
@@ -117,6 +136,11 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
           <div class="gallery-card-cta">View Gallery <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
         </div>
       </a>
+
+    </div>
+
+    <!-- Past galleries: links kept for direct access, hidden from public browsing -->
+    <div class="gallery-grid gallery-hidden">
 
       <a class="gallery-card" href="https://www.dropbox.com/scl/fo/q5v13iasyd0wor3rd5vqz/ABk7aKa4qB58RWZdh4SJgqQ?rlkey=9h9w8v3kw4ftb1rufd457ugkc&st=7our6em7&dl=0" target="_blank" rel="noopener">
         <div class="gallery-card-header">
