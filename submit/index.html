@@ -75,6 +75,8 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
 .info-list li{font-size:.91rem;line-height:1.75;color:var(--g600);padding:.5rem 0;padding-left:1.4rem;position:relative;border-bottom:1px solid rgba(232,228,219,.6)}
 .info-list li:last-child{border-bottom:none}
 .info-list li::before{content:'';position:absolute;left:0;top:.85rem;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.info-list li.step-item{padding-left:0}
+.info-list li.step-item::before{content:none}
 
 .step-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:'Oswald',sans-serif;font-size:.7rem;font-weight:700;margin-right:.5rem;flex-shrink:0;vertical-align:middle}
 
@@ -200,9 +202,9 @@ body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(-
     <div class="info-card">
       <p>Selection of North Carolina Soccer Hall of Fame inductees is a three-phase process:</p>
       <ul class="info-list">
-        <li><span class="step-num">1</span> <strong>Identification of Candidates</strong> — the nomination process described above.</li>
-        <li><span class="step-num">2</span> <strong>Board Review</strong> — a confidential, private review by the NCSHOF Board of Directors of all candidate statements, concluded with a vote by secret ballot to determine which candidates to include as nominees. A candidate must receive at least 50% of the vote to be considered a nominee.</li>
-        <li><span class="step-num">3</span> <strong>Final Vote</strong> — a vote by electronic secret ballot by all living members of the NC Soccer Hall of Fame and the Board of Directors. The top three vote-getters are selected as inductees and a fourth if she or he receives more than 50% of the votes based on the total number of votes cast.</li>
+        <li class="step-item"><span class="step-num">1</span> <strong>Identification of Candidates</strong> — the nomination process described above.</li>
+        <li class="step-item"><span class="step-num">2</span> <strong>Board Review</strong> — a confidential, private review by the NCSHOF Board of Directors of all candidate statements, concluded with a vote by secret ballot to determine which candidates to include as nominees. A candidate must receive at least 50% of the vote to be considered a nominee.</li>
+        <li class="step-item"><span class="step-num">3</span> <strong>Final Vote</strong> — a vote by electronic secret ballot by all living members of the NC Soccer Hall of Fame and the Board of Directors. The top three vote-getters are selected as inductees and a fourth if she or he receives more than 50% of the votes based on the total number of votes cast.</li>
       </ul>
     </div>
     <div class="info-card">
