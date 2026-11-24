@@ -89,7 +89,7 @@
           '<div class="footer-title">HOF Supporters &amp; Partners</div>' +
           '<a class="footer-ig" href="' + igLink + '" target="_blank" rel="noopener" aria-label="Instagram">' + igSvg + '</a>' +
           '<div class="footer-legal">' +
-            '&copy; ' + new Date().getFullYear() + ' North Carolina Soccer Hall of Fame. All Rights Reserved.<br>' +
+            '&copy; ' + new Date().getFullYear() + ' North Carolina Soccer Hall of Fame. All Rights Reserved. &middot; <a href="/privacy/">Privacy Policy</a><br>' +
             'Sponsor of the HOF Dinner reception.' +
           '</div>' +
         '</div>' +
